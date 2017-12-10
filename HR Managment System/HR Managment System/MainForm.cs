@@ -9,7 +9,11 @@ public partial class MainForm : Form
     }
     private void PanelDisplayButton_Click(object sender, EventArgs e)
     {
-        DisplayDataShow.Rows.Add(100.ToString(), "7sen", "1001", "9910");
+        DisplayDataShow.Rows.Clear();
+        foreach (Employee emp in FileOperation.GetByDepId(int.Parse(DisplayDepartmentTextBox.Text)))
+        {
+            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+        }
     }
     private void DisplayButton_Click(object sender, EventArgs e)
     {
@@ -20,18 +24,37 @@ public partial class MainForm : Form
     {
         LandingPanel.Visible = true;
         DisplayPanel.Visible = false;
+        DisplayDataShow.Rows.Clear();
     }
+    Employee ActiveEmployee;
+    int ActiveUID;
     private void SearchPanelButton_Click(object sender, EventArgs e)
     {
-        SearchNameButton.Enabled = true;
-        SearchIDButton.Enabled = true;
-        SearchHiringDateButton.Enabled = true;
-        SearchDepartmentNoButton.Enabled = true;
-        //PerformSearch
-        SearchValueName.Text = "7sen";
-        SearchValueID.Text = "255";
-        SearchValueHirinDate.Text = "1990";
-        SearchValueDepartmentNo.Text = "99904";
+        ActiveEmployee = FileOperation.GetByEmpId(int.Parse(SearchText.Text))[0];
+        if (ActiveEmployee != null)
+        {
+            ActiveUID = int.Parse(SearchText.Text);
+            SearchNameButton.Enabled = true;
+            SearchIDButton.Enabled = true;
+            SearchHiringDateButton.Enabled = true;
+            SearchDepartmentNoButton.Enabled = true;
+            SearchValueName.Text = ActiveEmployee.Name;
+            SearchValueID.Text = ActiveEmployee.Id.ToString();
+            SearchValueHirinDate.Text = ActiveEmployee.HireDate.ToShortDateString();
+            SearchValueDepartmentNo.Text = ActiveEmployee.DepId.ToString();
+        }
+        else
+        {
+            SearchNameButton.Enabled = false;
+            SearchIDButton.Enabled = false;
+            SearchHiringDateButton.Enabled = false;
+            SearchDepartmentNoButton.Enabled = false;
+            SearchValueName.Text = "--------";
+            SearchValueID.Text = "--------";
+            SearchValueHirinDate.Text = "--------";
+            SearchValueDepartmentNo.Text = "--------";
+            //buttons need to be reset....
+        }
     }
     private void SearchNameButton_Click(object sender, EventArgs e)
     {
@@ -45,7 +68,8 @@ public partial class MainForm : Form
         {
             SearchEditableName.Visible = false;
             SearchNameButton.Text = "Edit";
-            //Editing Procedure
+            ActiveEmployee.Name = SearchEditableName.Text;
+            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
             SearchValueName.Text = SearchEditableName.Text;
         }
     }
@@ -61,7 +85,9 @@ public partial class MainForm : Form
         {
             SearchEditableID.Visible = false;
             SearchIDButton.Text = "Edit";
-            //Editing Procedure
+            ActiveEmployee.Id = int.Parse(SearchEditableID.Text);
+            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
+            ActiveUID = int.Parse(SearchEditableID.Text);
             SearchValueID.Text = SearchEditableID.Text;
         }
     }
@@ -69,7 +95,7 @@ public partial class MainForm : Form
     {
         if (!SearchEditableHiringDate.Visible)
         {
-            SearchEditableHiringDate.Text = SearchValueHirinDate.Text;
+            SearchEditableHiringDate.Value = ActiveEmployee.HireDate;
             SearchEditableHiringDate.Visible = true;
             SearchHiringDateButton.Text = "Done";
         }
@@ -77,7 +103,8 @@ public partial class MainForm : Form
         {
             SearchEditableHiringDate.Visible = false;
             SearchHiringDateButton.Text = "Edit";
-            //Editing Procedure
+            ActiveEmployee.HireDate = SearchEditableHiringDate.Value;
+            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
             SearchValueHirinDate.Text = SearchEditableHiringDate.Text;
         }
     }
@@ -93,7 +120,8 @@ public partial class MainForm : Form
         {
             SearchEditableDepartmentNo.Visible = false;
             SearchDepartmentNoButton.Text = "Edit";
-            //Editing Procedure
+            ActiveEmployee.DepId = int.Parse(SearchEditableDepartmentNo.Text);
+            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
             SearchValueDepartmentNo.Text = SearchEditableDepartmentNo.Text;
         }
     }
@@ -106,5 +134,14 @@ public partial class MainForm : Form
     {
         SearchPanel.Visible = true;
         LandingPanel.Visible = false;
+        SearchNameButton.Enabled = false;
+        SearchIDButton.Enabled = false;
+        SearchHiringDateButton.Enabled = false;
+        SearchDepartmentNoButton.Enabled = false;
+        SearchValueName.Text = "--------";
+        SearchValueID.Text = "--------";
+        SearchValueHirinDate.Text = "--------";
+        SearchValueDepartmentNo.Text = "--------";
+        //buttons need to be reset....
     }
 }
