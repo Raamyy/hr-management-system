@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs">
+    <Compile Include="Departement.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="FileOperation.cs" />
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
