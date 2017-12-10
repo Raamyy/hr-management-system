@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace HR_Managment_System
 {
-    class FileOperation
+    class Departement
     {
-        FileOperation()
-        {
-
-        }
-        void read()
-        {
-
-        }
+        int id;
+        string name;
     }
 }

@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace HR_Managment_System
 {
-    class FileOperation
+    class Employee
     {
-        FileOperation()
-        {
-
-        }
-        void read()
-        {
-
-        }
+        int id;
+        string name;
+        int DepNum;
+        int HireDate;
     }
 }
