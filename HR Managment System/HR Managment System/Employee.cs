@@ -8,14 +8,55 @@ namespace HR_Managment_System
 {
     class Employee
     {
-            private int id;
-            private string name;
-            private int depId;
-            private DateTime hireDate;
+        private int id;
+        private string name;
+        private int depId;
+        private DateTime hireDate;
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public int DepId { get => depId; set => depId = value; }
-        public DateTime HireDate { get => hireDate; set => hireDate = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public int DepId
+        {
+            get
+            {
+                return DepId;
+            }
+            set
+            {
+                DepId = value;
+            }
+        }
+        public DateTime HireDate
+        {
+            get
+            {
+                return hireDate;
+            }
+            set
+            {
+                hireDate = value;
+            }
+
+        }
     }
 }
