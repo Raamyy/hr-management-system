@@ -14,6 +14,7 @@ namespace HR_Managment_System
         private static char[] chName = new char[20];
         private static char[] chDepId = new char[5];
         private static char[] chHireDate = new char[10];
+        private static char[] chDepName = new char[10];
         FileOperation()
         {
 
@@ -77,9 +78,16 @@ namespace HR_Managment_System
 
         public static bool writeDep(Departement dep)
         {
-            depId = dep.
-            if(depId.Length <= 5)
+            depId = dep.Id.ToString();
+            depName = dep.Name;
+            if(depId.Length <= 5 && depName.Length <= 20)
             {
+                FileStream Fs = new FileStream("Department.txt", FileMode.Append, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(Fs);
+                depId.CopyTo(0, chDepId, 0, 5);
+                depName.CopyTo(0, chDepName, 0, 20);
+                sw.Write(depId, 0, 5);
+                sw.Write(depName, 0, 20);
                 return true;
             }
             return false;
