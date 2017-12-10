@@ -13,6 +13,9 @@ namespace HR_Managment_System
         {
 
         }
+
+
+
         List<Employee> read() //returns list of all employees in the file.
         {
             if (File.Exists("employees.txt"))
@@ -56,6 +59,31 @@ namespace HR_Managment_System
             }
 
             return null;
+        }
+
+
+        List<Employee> GetByDepId(int DepId) //returns list of employees of dep depId
+        {
+            List<Employee> AllEmployees = read();
+            List<Employee> Emp = new List<Employee>();
+            for(int i=0; i<AllEmployees.Count; i++)
+            {
+                if (AllEmployees[i].DepId == DepId)
+                    Emp.Add(AllEmployees[i]);
+            }
+            return Emp;
+        }
+
+        List<Employee> GetByEmpId(int Id) //returns list of employees of dep depId
+        {
+            List<Employee> AllEmployees = read();
+            List<Employee> Emp = new List<Employee>();
+            for (int i = 0; i < AllEmployees.Count; i++)
+            {
+                if (AllEmployees[i].Id == Id)
+                    Emp.Add(AllEmployees[i]);
+            }
+            return Emp;
         }
 
         public static bool write(Employee emp)
