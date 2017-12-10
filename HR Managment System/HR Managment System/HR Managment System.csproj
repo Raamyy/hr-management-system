@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Departement.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="FileOperation.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
