@@ -42,6 +42,7 @@ partial class MainForm
             this.DummyDepartLabel = new System.Windows.Forms.Label();
             this.DisplayDepartmentTextBox = new System.Windows.Forms.TextBox();
             this.SearchPanel = new System.Windows.Forms.Panel();
+            this.SearchBack = new System.Windows.Forms.Button();
             this.SearchPanelButton = new System.Windows.Forms.Button();
             this.DummySearchLabel = new System.Windows.Forms.Label();
             this.SearchDepartmentNoButton = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@ partial class MainForm
             this.SearchIDButton = new System.Windows.Forms.Button();
             this.SearchNameButton = new System.Windows.Forms.Button();
             this.SearchEditableDepartmentNo = new System.Windows.Forms.TextBox();
-            this.SearchEditableHiringDate = new System.Windows.Forms.TextBox();
             this.SearchEditableID = new System.Windows.Forms.TextBox();
             this.SearchEditableName = new System.Windows.Forms.TextBox();
             this.SearchValueDepartmentNo = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@ partial class MainForm
             this.SearchIDLabel = new System.Windows.Forms.Label();
             this.SearchLabelName = new System.Windows.Forms.Label();
             this.SearchText = new System.Windows.Forms.TextBox();
-            this.SearchBack = new System.Windows.Forms.Button();
+            this.SearchEditableHiringDate = new System.Windows.Forms.DateTimePicker();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayDataShow)).BeginInit();
@@ -205,6 +205,7 @@ partial class MainForm
             // 
             // SearchPanel
             // 
+            this.SearchPanel.Controls.Add(this.SearchEditableHiringDate);
             this.SearchPanel.Controls.Add(this.SearchBack);
             this.SearchPanel.Controls.Add(this.SearchPanelButton);
             this.SearchPanel.Controls.Add(this.DummySearchLabel);
@@ -213,7 +214,6 @@ partial class MainForm
             this.SearchPanel.Controls.Add(this.SearchIDButton);
             this.SearchPanel.Controls.Add(this.SearchNameButton);
             this.SearchPanel.Controls.Add(this.SearchEditableDepartmentNo);
-            this.SearchPanel.Controls.Add(this.SearchEditableHiringDate);
             this.SearchPanel.Controls.Add(this.SearchEditableID);
             this.SearchPanel.Controls.Add(this.SearchEditableName);
             this.SearchPanel.Controls.Add(this.SearchValueDepartmentNo);
@@ -231,6 +231,17 @@ partial class MainForm
             this.SearchPanel.TabIndex = 3;
             this.SearchPanel.Visible = false;
             // 
+            // SearchBack
+            // 
+            this.SearchBack.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.SearchBack.Location = new System.Drawing.Point(301, 284);
+            this.SearchBack.Name = "SearchBack";
+            this.SearchBack.Size = new System.Drawing.Size(75, 23);
+            this.SearchBack.TabIndex = 19;
+            this.SearchBack.Text = "Back";
+            this.SearchBack.UseVisualStyleBackColor = true;
+            this.SearchBack.Click += new System.EventHandler(this.SearchBack_Click);
+            // 
             // SearchPanelButton
             // 
             this.SearchPanelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -245,11 +256,11 @@ partial class MainForm
             // DummySearchLabel
             // 
             this.DummySearchLabel.AutoSize = true;
-            this.DummySearchLabel.Location = new System.Drawing.Point(246, 15);
+            this.DummySearchLabel.Location = new System.Drawing.Point(208, 15);
             this.DummySearchLabel.Name = "DummySearchLabel";
-            this.DummySearchLabel.Size = new System.Drawing.Size(41, 13);
+            this.DummySearchLabel.Size = new System.Drawing.Size(73, 13);
             this.DummySearchLabel.TabIndex = 17;
-            this.DummySearchLabel.Text = "Name :";
+            this.DummySearchLabel.Text = "Employee ID :";
             // 
             // SearchDepartmentNoButton
             // 
@@ -307,15 +318,6 @@ partial class MainForm
             this.SearchEditableDepartmentNo.TabIndex = 12;
             this.SearchEditableDepartmentNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SearchEditableDepartmentNo.Visible = false;
-            // 
-            // SearchEditableHiringDate
-            // 
-            this.SearchEditableHiringDate.Location = new System.Drawing.Point(287, 148);
-            this.SearchEditableHiringDate.Name = "SearchEditableHiringDate";
-            this.SearchEditableHiringDate.Size = new System.Drawing.Size(100, 20);
-            this.SearchEditableHiringDate.TabIndex = 11;
-            this.SearchEditableHiringDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SearchEditableHiringDate.Visible = false;
             // 
             // SearchEditableID
             // 
@@ -414,24 +416,21 @@ partial class MainForm
             this.SearchText.Size = new System.Drawing.Size(100, 20);
             this.SearchText.TabIndex = 0;
             // 
-            // SearchBack
+            // SearchEditableHiringDate
             // 
-            this.SearchBack.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.SearchBack.Location = new System.Drawing.Point(301, 284);
-            this.SearchBack.Name = "SearchBack";
-            this.SearchBack.Size = new System.Drawing.Size(75, 23);
-            this.SearchBack.TabIndex = 19;
-            this.SearchBack.Text = "Back";
-            this.SearchBack.UseVisualStyleBackColor = true;
-            this.SearchBack.Click += new System.EventHandler(this.SearchBack_Click);
+            this.SearchEditableHiringDate.Location = new System.Drawing.Point(258, 148);
+            this.SearchEditableHiringDate.Name = "SearchEditableHiringDate";
+            this.SearchEditableHiringDate.Size = new System.Drawing.Size(162, 20);
+            this.SearchEditableHiringDate.TabIndex = 20;
+            this.SearchEditableHiringDate.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 319);
-            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.SearchPanel);
+            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.DisplayPanel);
             this.Name = "MainForm";
             this.Text = "HRMS";
@@ -478,9 +477,9 @@ partial class MainForm
     private System.Windows.Forms.Button SearchIDButton;
     private System.Windows.Forms.Button SearchNameButton;
     private System.Windows.Forms.TextBox SearchEditableDepartmentNo;
-    private System.Windows.Forms.TextBox SearchEditableHiringDate;
     private System.Windows.Forms.TextBox SearchEditableID;
     private System.Windows.Forms.TextBox SearchEditableName;
     private System.Windows.Forms.Button SearchBack;
+    private System.Windows.Forms.DateTimePicker SearchEditableHiringDate;
 }
 

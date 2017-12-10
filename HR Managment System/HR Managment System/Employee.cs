@@ -4,59 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HR_Managment_System
+public class Employee
 {
-    class Employee
+    private int id;
+    private string name;
+    private int depId;
+    private DateTime hireDate;
+    public int Id
     {
-        private int id;
-        private string name;
-        private int depId;
-        private DateTime hireDate;
+        get
+        {
+            return id;
+        }
+        set
+        {
+            id = value;
+        }
+    }
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
+        set
+        {
+            name = value;
+        }
+    }
+    public int DepId
+    {
+        get
+        {
+            return depId;
+        }
+        set
+        {
+            depId = value;
+        }
+    }
+    public DateTime HireDate
+    {
+        get
+        {
+            return hireDate;
+        }
+        set
+        {
+            hireDate = value;
+        }
 
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-        public int DepId
-        {
-            get
-            {
-                return DepId;
-            }
-            set
-            {
-                DepId = value;
-            }
-        }
-        public DateTime HireDate
-        {
-            get
-            {
-                return hireDate;
-            }
-            set
-            {
-                hireDate = value;
-            }
-
-        }
     }
 }
