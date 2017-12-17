@@ -144,4 +144,36 @@ public partial class MainForm : Form
         SearchValueDepartmentNo.Text = "--------";
         //buttons need to be reset....
     }
+
+    private void WriteButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void EmployeeSubmitButton_Click(object sender, EventArgs e)
+    {
+        Employee temp = new Employee();
+        temp.Id = int.Parse(EmployeeId.Text);
+        temp.Name = EmployeeName.Text;
+        temp.DepId = int.Parse(EmployeeDepId.Text);
+
+        if (temp.Name.Length > 20)
+            EmployeeNameError.Text = "Invalid Input";
+         if (EmployeeId.Text.Length > 20)
+            EmployeeIdError.Text = "Invalid Input";
+        if (EmployeeDepId.Text.Length > 20)
+            EmployeeDepIdError.Text = "Invalid Input";
+
+        FileOperation.writeEmployee(temp, FileOperation.getOffset());
+    }
+
+    private void label5_Click(object sender, EventArgs e)
+    {
+
+    }
 }
