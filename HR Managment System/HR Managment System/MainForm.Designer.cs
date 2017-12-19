@@ -608,10 +608,10 @@ partial class MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 466);
+            this.Controls.Add(this.WritingPanel);
             this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.DisplayPanel);
-            this.Controls.Add(this.WritingPanel);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "HRMS";

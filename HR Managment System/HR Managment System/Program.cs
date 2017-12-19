@@ -14,13 +14,13 @@ namespace HR_Managment_System
         [STAThread]
         static void Main()
         {
-            FileOperation.writeEmployee(new Employee()
+            /*FileOperation.writeEmployee(new Employee()
             {
                 Name = "7sen",
                 Id = 123,
                 DepId = 1,
                 HireDate = new DateTime(2017,5,29),
-            }, 100);
+            }, 100);*/
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

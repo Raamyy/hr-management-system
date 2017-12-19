@@ -90,18 +90,17 @@ class FileOperation
         return Emp;
     }
 
-    public static bool writeEmployee(Employee emp, int offset)
+    public static bool writeEmployee(Employee emp, long offset)
     {
         id = emp.Id.ToString(); name = emp.Name; depId = emp.DepId.ToString();
         hireDate = emp.HireDate.ToShortDateString();
 
         if (id.Length <= 5 && name.Length <= 20 && hireDate.Length <= 10 && depId.Length <= 5)
         {
-            FileStream Fs = new FileStream("Employees.txt", FileMode.Append, FileAccess.Write);
+            FileStream Fs = new FileStream("Employees.txt", FileMode.Open, FileAccess.Write);
             StreamWriter st = new StreamWriter(Fs);
             st.Flush();
-            if (offset < Fs.Length)
-                st.BaseStream.Seek(offset, SeekOrigin.Begin);
+            st.BaseStream.Seek(offset, SeekOrigin.Begin);
 
             chId = new char[5]; chName = new char[20]; chHireDate = new char[10];
             chDepId = new char[5];
@@ -167,6 +166,8 @@ class FileOperation
     public static long getOffset()
     {
         FileStream Fs = new FileStream("Employees.txt", FileMode.OpenOrCreate);
-        return Fs.Length;
+        long length = Fs.Length;
+        Fs.Close();
+        return length;
     }
 }
