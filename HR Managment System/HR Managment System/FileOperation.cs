@@ -13,12 +13,14 @@ class FileOperation
     private static char[] chDepId = new char[5];
     private static char[] chHireDate = new char[10];
     private static char[] chDepName = new char[10];
+    private static Dictionary<int, bool> IsUniqueEmployeeID = new Dictionary<int, bool>();
+    private static Dictionary<int, bool> IsUniqueDepartmentID = new Dictionary<int, bool>();
     FileOperation()
     {
 
     }
 
-
+    
 
     public static List<Employee> read() //returns list of all employees in the file.
     {
@@ -55,7 +57,8 @@ class FileOperation
                 temp.HireDate = HireDate;
                 temp.DepId = int.Parse(DepId);
 
-                Employees.Add(temp);
+                Employees.Add(temp);                  
+                IsUniqueEmployeeID[temp.Id] = true; //reading the file updates the Employee IDs Dictionary
             }
 
             sr.Close();
@@ -64,7 +67,35 @@ class FileOperation
 
         return null;
     }
+    public static List<Departement> Read_Dep()
+    {
+        if (File.Exists("Departements.txt"))
+        {
 
+            FileStream FS = new FileStream("Departements.txt", FileMode.Open);
+            StreamReader sr = new StreamReader(FS);
+            List<Departement> Departments = new List<Departement>();
+
+            while(sr.Peek()!=-1)
+            {
+                Departement temp = new Departement();
+                char[] id = new char[5];
+                char[] name = new char[20];
+                sr.Read(id, 0, 5);
+                sr.Read(name, 0, 20);
+                string Id = new string(id);
+                string Name = new string(name);
+                temp.Id = int.Parse(Id);
+
+                temp.Name = Name;
+                Departments.Add(temp);
+                IsUniqueDepartmentID[temp.Id] = true; //reading the file updates the Departments IDs Dictionary
+            }
+            sr.Close();
+            return Departments;
+        }
+        return null;
+    }
 
     public static List<Employee> GetByDepId(int DepId) //returns list of employees of dep depId
     {
@@ -77,7 +108,41 @@ class FileOperation
         }
         return Emp;
     }
+    public static List<Employee> GetByDepName(string DepName) //returns list of employees from a specific department DepName
+    {
+        List<Employee> AllEmployees = read();
+        List<Departement> AllDepartements = Read_Dep();
+        List<Employee> Emp = new List<Employee>();
+        Dictionary<int, string> GetDep = new Dictionary<int, string>();
 
+        for (int i=0; i<AllDepartements.Count; i++)
+        {
+            GetDep[AllDepartements[i].Id] = AllDepartements[i].Name;
+        }
+        for (int i = 0; i < AllEmployees.Count; i++)
+        {
+            if (GetDep[AllEmployees[i].DepId]==DepName)
+            {
+                Emp.Add(AllEmployees[i]);
+            }
+        }
+        return Emp;
+    }
+    public static List<Employee> GetByEmpName(string EmpName) //returns list of employees with names similar to EmpName (or contain EmpName)
+    {
+        List<Employee> AllEmployees = read();
+        List<Employee> Emp = new List<Employee>();
+        int idx;
+        for (int i=0; i<AllEmployees.Count; i++)
+        {
+            idx = AllEmployees[i].Name.IndexOf(EmpName);
+            if (idx!=-1)
+            {
+                Emp.Add(AllEmployees[i]);
+            }
+        }
+        return Emp;
+    }
     public static List<Employee> GetByEmpId(int Id) //returns list of employees of dep depId
     {
         List<Employee> AllEmployees = read();
@@ -107,6 +172,7 @@ class FileOperation
             depId.CopyTo(0, chDepId, 0, 5);
             hireDate.CopyTo(0, chHireDate, 0, 10);
 
+            IsUniqueEmployeeID[int.Parse(id)] = true;       //
             st.Write(chId, 0, 5);
             st.Write(chName, 0, 20);
             st.Write(chHireDate, 0, 10);
@@ -138,6 +204,7 @@ class FileOperation
             }
             offset++;
         }
+        IsUniqueEmployeeID[emp.Id] = true;      //
         writeEmployee(emp, offset);
         return true;
     }
@@ -154,6 +221,7 @@ class FileOperation
             depName.CopyTo(0, chDepName, 0, 20);
             sw.Write(depId, 0, 5);
             sw.Write(depName, 0, 20);
+            IsUniqueDepartmentID[int.Parse(depId)] = true;  // 
             return true;
         }
         return false;
