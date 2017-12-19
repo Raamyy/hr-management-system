@@ -161,6 +161,7 @@ public partial class MainForm : Form
         temp.Id = int.Parse(EmployeeId.Text);
         temp.Name = EmployeeName.Text;
         temp.DepId = int.Parse(EmployeeDepId.Text);
+        temp.HireDate = EmployeeHiryDate.Value;
 
         if (temp.Name.Length > 20)
             EmployeeNameError.Text = "Invalid Input";
@@ -170,6 +171,7 @@ public partial class MainForm : Form
             EmployeeDepIdError.Text = "Invalid Input";
 
         FileOperation.writeEmployee(temp, FileOperation.getOffset());
+        Submit_Result.Text = "Employee was addded succesfully!";
     }
 
     private void label5_Click(object sender, EventArgs e)
@@ -179,6 +181,28 @@ public partial class MainForm : Form
 
     private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
     {
+
+    }
+
+    private void label5_Click_1(object sender, EventArgs e)
+    {
+
+    }
+
+    private void SearchEditableHiringDate_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void BackButton_Click(object sender, EventArgs e)
+    {
+        WritingPanel.Hide();
+        LandingPanel.Show();
 
     }
 }

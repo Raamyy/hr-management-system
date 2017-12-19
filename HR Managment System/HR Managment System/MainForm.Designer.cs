@@ -71,11 +71,13 @@ partial class MainForm
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.EmployeeHiringDate = new System.Windows.Forms.TextBox();
             this.EmployeeDepId = new System.Windows.Forms.TextBox();
             this.EmployeeId = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
             this.EmployeeName = new System.Windows.Forms.TextBox();
+            this.Submit_Result = new System.Windows.Forms.Label();
+            this.EmployeeHiryDate = new System.Windows.Forms.DateTimePicker();
+            this.BackButton = new System.Windows.Forms.Button();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayDataShow)).BeginInit();
@@ -266,6 +268,7 @@ partial class MainForm
             this.SearchEditableHiringDate.Size = new System.Drawing.Size(241, 27);
             this.SearchEditableHiringDate.TabIndex = 20;
             this.SearchEditableHiringDate.Visible = false;
+            this.SearchEditableHiringDate.ValueChanged += new System.EventHandler(this.SearchEditableHiringDate_ValueChanged);
             // 
             // SearchBack
             // 
@@ -473,6 +476,9 @@ partial class MainForm
             // 
             // WritingPanel
             // 
+            this.WritingPanel.Controls.Add(this.BackButton);
+            this.WritingPanel.Controls.Add(this.EmployeeHiryDate);
+            this.WritingPanel.Controls.Add(this.Submit_Result);
             this.WritingPanel.Controls.Add(this.EmployeeDepIdError);
             this.WritingPanel.Controls.Add(this.EmployeeIdError);
             this.WritingPanel.Controls.Add(this.EmployeeNameError);
@@ -481,7 +487,6 @@ partial class MainForm
             this.WritingPanel.Controls.Add(this.label3);
             this.WritingPanel.Controls.Add(this.label2);
             this.WritingPanel.Controls.Add(this.label1);
-            this.WritingPanel.Controls.Add(this.EmployeeHiringDate);
             this.WritingPanel.Controls.Add(this.EmployeeDepId);
             this.WritingPanel.Controls.Add(this.EmployeeId);
             this.WritingPanel.Controls.Add(this.Title);
@@ -519,7 +524,7 @@ partial class MainForm
             // 
             // EmployeeSubmitButton
             // 
-            this.EmployeeSubmitButton.Location = new System.Drawing.Point(759, 406);
+            this.EmployeeSubmitButton.Location = new System.Drawing.Point(779, 370);
             this.EmployeeSubmitButton.Name = "EmployeeSubmitButton";
             this.EmployeeSubmitButton.Size = new System.Drawing.Size(146, 42);
             this.EmployeeSubmitButton.TabIndex = 9;
@@ -564,14 +569,6 @@ partial class MainForm
             this.label1.Text = "Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // EmployeeHiringDate
-            // 
-            this.EmployeeHiringDate.Location = new System.Drawing.Point(406, 362);
-            this.EmployeeHiringDate.Name = "EmployeeHiringDate";
-            this.EmployeeHiringDate.Size = new System.Drawing.Size(204, 27);
-            this.EmployeeHiringDate.TabIndex = 4;
-            this.EmployeeHiringDate.TextChanged += new System.EventHandler(this.EmployeeHiringDate_TextChanged);
-            // 
             // EmployeeDepId
             // 
             this.EmployeeDepId.Location = new System.Drawing.Point(406, 291);
@@ -602,6 +599,33 @@ partial class MainForm
             this.EmployeeName.Name = "EmployeeName";
             this.EmployeeName.Size = new System.Drawing.Size(204, 27);
             this.EmployeeName.TabIndex = 0;
+            // 
+            // Submit_Result
+            // 
+            this.Submit_Result.AutoSize = true;
+            this.Submit_Result.Location = new System.Drawing.Point(766, 430);
+            this.Submit_Result.Name = "Submit_Result";
+            this.Submit_Result.Size = new System.Drawing.Size(0, 19);
+            this.Submit_Result.TabIndex = 13;
+            this.Submit_Result.Click += new System.EventHandler(this.label5_Click_1);
+            // 
+            // EmployeeHiryDate
+            // 
+            this.EmployeeHiryDate.Location = new System.Drawing.Point(406, 364);
+            this.EmployeeHiryDate.Name = "EmployeeHiryDate";
+            this.EmployeeHiryDate.Size = new System.Drawing.Size(204, 27);
+            this.EmployeeHiryDate.TabIndex = 14;
+            this.EmployeeHiryDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // BackButton
+            // 
+            this.BackButton.Location = new System.Drawing.Point(24, 22);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(86, 43);
+            this.BackButton.TabIndex = 15;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // MainForm
             // 
@@ -674,9 +698,11 @@ partial class MainForm
     private System.Windows.Forms.Label Title;
     private System.Windows.Forms.TextBox EmployeeName;
     private System.Windows.Forms.Button EmployeeSubmitButton;
-    private System.Windows.Forms.TextBox EmployeeHiringDate;
     private System.Windows.Forms.Label EmployeeNameError;
     private System.Windows.Forms.Label EmployeeDepIdError;
     private System.Windows.Forms.Label EmployeeIdError;
+    private System.Windows.Forms.Label Submit_Result;
+    private System.Windows.Forms.DateTimePicker EmployeeHiryDate;
+    private System.Windows.Forms.Button BackButton;
 }
 
