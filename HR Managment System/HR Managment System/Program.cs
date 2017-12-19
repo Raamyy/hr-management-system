@@ -19,7 +19,7 @@ namespace HR_Managment_System
                 Name = "7sen",
                 Id = 123,
                 DepId = 1,
-                HireDate = new DateTime(2017, 5, 29)
+                HireDate = new DateTime(2017,5,29),
             }, 100);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

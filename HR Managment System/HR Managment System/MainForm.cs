@@ -176,4 +176,9 @@ public partial class MainForm : Form
     {
 
     }
+
+    private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
