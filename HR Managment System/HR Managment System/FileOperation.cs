@@ -8,11 +8,11 @@ using System.IO;
 public static class FileOperation
 {
     static string id, name, depId, hireDate, depName;
-    private static char[] chId = new char[5];
-    private static char[] chName = new char[20];
-    private static char[] chDepId = new char[5];
-    private static char[] chHireDate = new char[10];
-    private static char[] chDepName = new char[10];
+    private static char[] chId;
+    private static char[] chName;
+    private static char[] chDepId;
+    private static char[] chHireDate;
+    private static char[] chDepName;
     public static List<Employee> read() //returns list of all employees in the file.
     {
         if (File.Exists("Employees.txt"))
@@ -96,6 +96,11 @@ public static class FileOperation
                 st.BaseStream.Seek(offset, SeekOrigin.Begin);
             else
                 st.BaseStream.Seek(0, SeekOrigin.End);
+
+            chId = new Char[5];
+            chName = new char[20];
+            chHireDate = new char[10];
+            chDepId = new char[5];
             id.CopyTo(0, chId, 0, id.Length);
             name.CopyTo(0, chName, 0, name.Length);
             depId.CopyTo(0, chDepId, 0, depId.Length);
@@ -145,6 +150,9 @@ public static class FileOperation
         {
             FileStream Fs = new FileStream("Department.txt", FileMode.Append, FileAccess.Write);
             StreamWriter sw = new StreamWriter(Fs);
+
+            chDepId = new char[5];
+            chDepName = new char[20];
             depId.CopyTo(0, chDepId, 0, 5);
             depName.CopyTo(0, chDepName, 0, 20);
             sw.Write(depId, 0, 5);

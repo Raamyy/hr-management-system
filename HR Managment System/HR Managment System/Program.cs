@@ -17,7 +17,7 @@ namespace HR_Managment_System
             FileOperation.writeEmployee(new Employee()
             {
                 Name = "7sen",
-                Id = 3738,
+                Id = 123,
                 DepId = 1,
                 HireDate = new DateTime(2017, 5, 29)
             }, 100);
