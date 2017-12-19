@@ -8,21 +8,14 @@ using System.IO;
 class FileOperation
 {
     static string id, name, depId, hireDate, depName;
-<<<<<<< HEAD
-    private static char[] chId = new char[5];
-    private static char[] chName = new char[20];
-    private static char[] chDepId = new char[5];
-    private static char[] chHireDate = new char[10];
-    private static char[] chDepName = new char[10];
     private static Dictionary<int, bool> IsUniqueEmployeeID = new Dictionary<int, bool>();
     private static Dictionary<int, bool> IsUniqueDepartmentID = new Dictionary<int, bool>();
-=======
     private static char[] chId;
     private static char[] chName;
     private static char[] chDepId;
     private static char[] chHireDate;
     private static char[] chDepName;
->>>>>>> 78a73041ecec7f299d01e3b985f1c8d79a91d796
+
     FileOperation()
     {
 
