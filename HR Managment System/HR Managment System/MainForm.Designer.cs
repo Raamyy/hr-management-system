@@ -101,7 +101,7 @@ partial class MainForm
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(268, 79);
             this.SearchButton.TabIndex = 1;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "Update";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
