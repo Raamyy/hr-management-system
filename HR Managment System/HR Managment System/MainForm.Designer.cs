@@ -32,15 +32,22 @@ partial class MainForm
             this.WriteButton = new System.Windows.Forms.Button();
             this.LandingPanel = new System.Windows.Forms.Panel();
             this.DisplayPanel = new System.Windows.Forms.Panel();
+            this.EmployeeBox = new System.Windows.Forms.GroupBox();
+            this.DisplayDateInput = new System.Windows.Forms.TextBox();
+            this.DummyHireDateLabel = new System.Windows.Forms.Label();
+            this.DisplayIDInput = new System.Windows.Forms.TextBox();
+            this.DisplayNameInput = new System.Windows.Forms.TextBox();
+            this.DummyIDLabel = new System.Windows.Forms.Label();
+            this.DummyNameLabel = new System.Windows.Forms.Label();
+            this.DepartmentBox = new System.Windows.Forms.GroupBox();
+            this.DummyDepartLabel = new System.Windows.Forms.Label();
+            this.DisplayDepartmentInput = new System.Windows.Forms.TextBox();
             this.DisplayBackButton = new System.Windows.Forms.Button();
             this.DisplayDataShow = new System.Windows.Forms.DataGridView();
             this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PanelDisplayButton = new System.Windows.Forms.Button();
-            this.DummyDepartLabel = new System.Windows.Forms.Label();
-            this.DisplayDepartmentTextBox = new System.Windows.Forms.TextBox();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.SearchEditableHiringDate = new System.Windows.Forms.DateTimePicker();
             this.SearchBack = new System.Windows.Forms.Button();
@@ -78,6 +85,8 @@ partial class MainForm
             this.EmployeeName = new System.Windows.Forms.TextBox();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
+            this.EmployeeBox.SuspendLayout();
+            this.DepartmentBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayDataShow)).BeginInit();
             this.SearchPanel.SuspendLayout();
             this.WritingPanel.SuspendLayout();
@@ -128,21 +137,115 @@ partial class MainForm
             // 
             // DisplayPanel
             // 
+            this.DisplayPanel.Controls.Add(this.EmployeeBox);
+            this.DisplayPanel.Controls.Add(this.DepartmentBox);
             this.DisplayPanel.Controls.Add(this.DisplayBackButton);
             this.DisplayPanel.Controls.Add(this.DisplayDataShow);
-            this.DisplayPanel.Controls.Add(this.PanelDisplayButton);
-            this.DisplayPanel.Controls.Add(this.DummyDepartLabel);
-            this.DisplayPanel.Controls.Add(this.DisplayDepartmentTextBox);
             this.DisplayPanel.Location = new System.Drawing.Point(0, 0);
             this.DisplayPanel.Name = "DisplayPanel";
             this.DisplayPanel.Size = new System.Drawing.Size(707, 319);
             this.DisplayPanel.TabIndex = 3;
             this.DisplayPanel.Visible = false;
+            this.DisplayPanel.VisibleChanged += new System.EventHandler(this.DisplayPanel_VisibleChanged);
+            // 
+            // EmployeeBox
+            // 
+            this.EmployeeBox.Controls.Add(this.DisplayDateInput);
+            this.EmployeeBox.Controls.Add(this.DummyHireDateLabel);
+            this.EmployeeBox.Controls.Add(this.DisplayIDInput);
+            this.EmployeeBox.Controls.Add(this.DisplayNameInput);
+            this.EmployeeBox.Controls.Add(this.DummyIDLabel);
+            this.EmployeeBox.Controls.Add(this.DummyNameLabel);
+            this.EmployeeBox.Location = new System.Drawing.Point(462, 93);
+            this.EmployeeBox.Name = "EmployeeBox";
+            this.EmployeeBox.Size = new System.Drawing.Size(216, 151);
+            this.EmployeeBox.TabIndex = 6;
+            this.EmployeeBox.TabStop = false;
+            this.EmployeeBox.Text = "Filter By Employee";
+            // 
+            // DisplayDateInput
+            // 
+            this.DisplayDateInput.Location = new System.Drawing.Point(78, 117);
+            this.DisplayDateInput.Name = "DisplayDateInput";
+            this.DisplayDateInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayDateInput.TabIndex = 5;
+            this.DisplayDateInput.TextChanged += new System.EventHandler(this.FilterHandler);
+            // 
+            // DummyHireDateLabel
+            // 
+            this.DummyHireDateLabel.AutoSize = true;
+            this.DummyHireDateLabel.Location = new System.Drawing.Point(9, 120);
+            this.DummyHireDateLabel.Name = "DummyHireDateLabel";
+            this.DummyHireDateLabel.Size = new System.Drawing.Size(52, 13);
+            this.DummyHireDateLabel.TabIndex = 4;
+            this.DummyHireDateLabel.Text = "Hire Date";
+            // 
+            // DisplayIDInput
+            // 
+            this.DisplayIDInput.Location = new System.Drawing.Point(78, 75);
+            this.DisplayIDInput.Name = "DisplayIDInput";
+            this.DisplayIDInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayIDInput.TabIndex = 3;
+            this.DisplayIDInput.TextChanged += new System.EventHandler(this.FilterHandler);
+            // 
+            // DisplayNameInput
+            // 
+            this.DisplayNameInput.Location = new System.Drawing.Point(78, 36);
+            this.DisplayNameInput.Name = "DisplayNameInput";
+            this.DisplayNameInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayNameInput.TabIndex = 2;
+            this.DisplayNameInput.TextChanged += new System.EventHandler(this.FilterHandler);
+            // 
+            // DummyIDLabel
+            // 
+            this.DummyIDLabel.AutoSize = true;
+            this.DummyIDLabel.Location = new System.Drawing.Point(9, 78);
+            this.DummyIDLabel.Name = "DummyIDLabel";
+            this.DummyIDLabel.Size = new System.Drawing.Size(18, 13);
+            this.DummyIDLabel.TabIndex = 1;
+            this.DummyIDLabel.Text = "ID";
+            // 
+            // DummyNameLabel
+            // 
+            this.DummyNameLabel.AutoSize = true;
+            this.DummyNameLabel.Location = new System.Drawing.Point(9, 39);
+            this.DummyNameLabel.Name = "DummyNameLabel";
+            this.DummyNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.DummyNameLabel.TabIndex = 0;
+            this.DummyNameLabel.Text = "Name";
+            // 
+            // DepartmentBox
+            // 
+            this.DepartmentBox.Controls.Add(this.DummyDepartLabel);
+            this.DepartmentBox.Controls.Add(this.DisplayDepartmentInput);
+            this.DepartmentBox.Location = new System.Drawing.Point(462, 19);
+            this.DepartmentBox.Name = "DepartmentBox";
+            this.DepartmentBox.Size = new System.Drawing.Size(216, 68);
+            this.DepartmentBox.TabIndex = 5;
+            this.DepartmentBox.TabStop = false;
+            this.DepartmentBox.Text = "Filter By Department";
+            // 
+            // DummyDepartLabel
+            // 
+            this.DummyDepartLabel.AutoSize = true;
+            this.DummyDepartLabel.Location = new System.Drawing.Point(6, 37);
+            this.DummyDepartLabel.Name = "DummyDepartLabel";
+            this.DummyDepartLabel.Size = new System.Drawing.Size(62, 13);
+            this.DummyDepartLabel.TabIndex = 1;
+            this.DummyDepartLabel.Text = "Department";
+            // 
+            // DisplayDepartmentInput
+            // 
+            this.DisplayDepartmentInput.Location = new System.Drawing.Point(78, 34);
+            this.DisplayDepartmentInput.Name = "DisplayDepartmentInput";
+            this.DisplayDepartmentInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayDepartmentInput.TabIndex = 0;
+            this.DisplayDepartmentInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
             // DisplayBackButton
             // 
             this.DisplayBackButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DisplayBackButton.Location = new System.Drawing.Point(-1, 296);
+            this.DisplayBackButton.Location = new System.Drawing.Point(3, 293);
             this.DisplayBackButton.Name = "DisplayBackButton";
             this.DisplayBackButton.Size = new System.Drawing.Size(75, 23);
             this.DisplayBackButton.TabIndex = 4;
@@ -163,10 +266,10 @@ partial class MainForm
             this.DataHireDate,
             this.DataDepartmenNo});
             this.DisplayDataShow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DisplayDataShow.Location = new System.Drawing.Point(132, 38);
+            this.DisplayDataShow.Location = new System.Drawing.Point(12, 9);
             this.DisplayDataShow.Name = "DisplayDataShow";
             this.DisplayDataShow.ReadOnly = true;
-            this.DisplayDataShow.Size = new System.Drawing.Size(443, 269);
+            this.DisplayDataShow.Size = new System.Drawing.Size(439, 278);
             this.DisplayDataShow.TabIndex = 3;
             // 
             // DataID
@@ -192,32 +295,6 @@ partial class MainForm
             this.DataDepartmenNo.HeaderText = "Department No.";
             this.DataDepartmenNo.Name = "DataDepartmenNo";
             this.DataDepartmenNo.ReadOnly = true;
-            // 
-            // PanelDisplayButton
-            // 
-            this.PanelDisplayButton.Location = new System.Drawing.Point(414, 10);
-            this.PanelDisplayButton.Name = "PanelDisplayButton";
-            this.PanelDisplayButton.Size = new System.Drawing.Size(75, 23);
-            this.PanelDisplayButton.TabIndex = 2;
-            this.PanelDisplayButton.Text = "Display";
-            this.PanelDisplayButton.UseVisualStyleBackColor = true;
-            this.PanelDisplayButton.Click += new System.EventHandler(this.PanelDisplayButton_Click);
-            // 
-            // DummyDepartLabel
-            // 
-            this.DummyDepartLabel.AutoSize = true;
-            this.DummyDepartLabel.Location = new System.Drawing.Point(218, 15);
-            this.DummyDepartLabel.Name = "DummyDepartLabel";
-            this.DummyDepartLabel.Size = new System.Drawing.Size(64, 13);
-            this.DummyDepartLabel.TabIndex = 1;
-            this.DummyDepartLabel.Text = "Department";
-            // 
-            // DisplayDepartmentTextBox
-            // 
-            this.DisplayDepartmentTextBox.Location = new System.Drawing.Point(286, 12);
-            this.DisplayDepartmentTextBox.Name = "DisplayDepartmentTextBox";
-            this.DisplayDepartmentTextBox.Size = new System.Drawing.Size(122, 20);
-            this.DisplayDepartmentTextBox.TabIndex = 0;
             // 
             // SearchPanel
             // 
@@ -282,7 +359,7 @@ partial class MainForm
             this.DummySearchLabel.AutoSize = true;
             this.DummySearchLabel.Location = new System.Drawing.Point(208, 15);
             this.DummySearchLabel.Name = "DummySearchLabel";
-            this.DummySearchLabel.Size = new System.Drawing.Size(74, 13);
+            this.DummySearchLabel.Size = new System.Drawing.Size(73, 13);
             this.DummySearchLabel.TabIndex = 17;
             this.DummySearchLabel.Text = "Employee ID :";
             // 
@@ -366,7 +443,7 @@ partial class MainForm
             this.SearchValueDepartmentNo.AutoSize = true;
             this.SearchValueDepartmentNo.Location = new System.Drawing.Point(311, 192);
             this.SearchValueDepartmentNo.Name = "SearchValueDepartmentNo";
-            this.SearchValueDepartmentNo.Size = new System.Drawing.Size(63, 13);
+            this.SearchValueDepartmentNo.Size = new System.Drawing.Size(49, 13);
             this.SearchValueDepartmentNo.TabIndex = 8;
             this.SearchValueDepartmentNo.Text = "--------------";
             // 
@@ -375,7 +452,7 @@ partial class MainForm
             this.SearchValueHirinDate.AutoSize = true;
             this.SearchValueHirinDate.Location = new System.Drawing.Point(311, 153);
             this.SearchValueHirinDate.Name = "SearchValueHirinDate";
-            this.SearchValueHirinDate.Size = new System.Drawing.Size(63, 13);
+            this.SearchValueHirinDate.Size = new System.Drawing.Size(49, 13);
             this.SearchValueHirinDate.TabIndex = 7;
             this.SearchValueHirinDate.Text = "--------------";
             // 
@@ -384,7 +461,7 @@ partial class MainForm
             this.SearchValueID.AutoSize = true;
             this.SearchValueID.Location = new System.Drawing.Point(311, 113);
             this.SearchValueID.Name = "SearchValueID";
-            this.SearchValueID.Size = new System.Drawing.Size(63, 13);
+            this.SearchValueID.Size = new System.Drawing.Size(49, 13);
             this.SearchValueID.TabIndex = 6;
             this.SearchValueID.Text = "--------------";
             // 
@@ -393,7 +470,7 @@ partial class MainForm
             this.SearchValueName.AutoSize = true;
             this.SearchValueName.Location = new System.Drawing.Point(311, 69);
             this.SearchValueName.Name = "SearchValueName";
-            this.SearchValueName.Size = new System.Drawing.Size(63, 13);
+            this.SearchValueName.Size = new System.Drawing.Size(49, 13);
             this.SearchValueName.TabIndex = 5;
             this.SearchValueName.Text = "--------------";
             // 
@@ -402,7 +479,7 @@ partial class MainForm
             this.SearchDepartmentNo.AutoSize = true;
             this.SearchDepartmentNo.Location = new System.Drawing.Point(175, 190);
             this.SearchDepartmentNo.Name = "SearchDepartmentNo";
-            this.SearchDepartmentNo.Size = new System.Drawing.Size(87, 13);
+            this.SearchDepartmentNo.Size = new System.Drawing.Size(85, 13);
             this.SearchDepartmentNo.TabIndex = 4;
             this.SearchDepartmentNo.Text = "Department No :";
             // 
@@ -411,7 +488,7 @@ partial class MainForm
             this.SearchHiringDate.AutoSize = true;
             this.SearchHiringDate.Location = new System.Drawing.Point(175, 151);
             this.SearchHiringDate.Name = "SearchHiringDate";
-            this.SearchHiringDate.Size = new System.Drawing.Size(67, 13);
+            this.SearchHiringDate.Size = new System.Drawing.Size(66, 13);
             this.SearchHiringDate.TabIndex = 3;
             this.SearchHiringDate.Text = "Hiring Date :";
             // 
@@ -420,7 +497,7 @@ partial class MainForm
             this.SearchIDLabel.AutoSize = true;
             this.SearchIDLabel.Location = new System.Drawing.Point(175, 111);
             this.SearchIDLabel.Name = "SearchIDLabel";
-            this.SearchIDLabel.Size = new System.Drawing.Size(28, 13);
+            this.SearchIDLabel.Size = new System.Drawing.Size(27, 13);
             this.SearchIDLabel.TabIndex = 2;
             this.SearchIDLabel.Text = "ID : ";
             // 
@@ -515,7 +592,7 @@ partial class MainForm
             this.label3.Location = new System.Drawing.Point(175, 205);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Department ID";
             // 
@@ -535,7 +612,7 @@ partial class MainForm
             this.label1.Location = new System.Drawing.Point(175, 110);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -588,15 +665,18 @@ partial class MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 319);
+            this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.SearchPanel);
-            this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.WritingPanel);
             this.Name = "MainForm";
             this.Text = "HRMS";
             this.LandingPanel.ResumeLayout(false);
             this.DisplayPanel.ResumeLayout(false);
-            this.DisplayPanel.PerformLayout();
+            this.EmployeeBox.ResumeLayout(false);
+            this.EmployeeBox.PerformLayout();
+            this.DepartmentBox.ResumeLayout(false);
+            this.DepartmentBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayDataShow)).EndInit();
             this.SearchPanel.ResumeLayout(false);
             this.SearchPanel.PerformLayout();
@@ -613,9 +693,8 @@ partial class MainForm
     private System.Windows.Forms.Button WriteButton;
     private System.Windows.Forms.Panel LandingPanel;
     private System.Windows.Forms.Panel DisplayPanel;
-    private System.Windows.Forms.Button PanelDisplayButton;
     private System.Windows.Forms.Label DummyDepartLabel;
-    private System.Windows.Forms.TextBox DisplayDepartmentTextBox;
+    private System.Windows.Forms.TextBox DisplayDepartmentInput;
     private System.Windows.Forms.DataGridView DisplayDataShow;
     private System.Windows.Forms.DataGridViewTextBoxColumn DataID;
     private System.Windows.Forms.DataGridViewTextBoxColumn DataName;
@@ -657,5 +736,13 @@ partial class MainForm
     private System.Windows.Forms.Label EmployeeNameError;
     private System.Windows.Forms.Label EmployeeDepIdError;
     private System.Windows.Forms.Label EmployeeIdError;
+    private System.Windows.Forms.GroupBox EmployeeBox;
+    private System.Windows.Forms.Label DummyHireDateLabel;
+    private System.Windows.Forms.TextBox DisplayIDInput;
+    private System.Windows.Forms.TextBox DisplayNameInput;
+    private System.Windows.Forms.Label DummyIDLabel;
+    private System.Windows.Forms.Label DummyNameLabel;
+    private System.Windows.Forms.GroupBox DepartmentBox;
+    private System.Windows.Forms.TextBox DisplayDateInput;
 }
 

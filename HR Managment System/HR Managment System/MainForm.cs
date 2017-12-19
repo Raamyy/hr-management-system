@@ -7,14 +7,6 @@ public partial class MainForm : Form
     {
         InitializeComponent();
     }
-    private void PanelDisplayButton_Click(object sender, EventArgs e)
-    {
-        DisplayDataShow.Rows.Clear();
-        foreach (Employee emp in FileOperation.GetByDepId(int.Parse(DisplayDepartmentTextBox.Text)))
-        {
-            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
-        }
-    }
     private void DisplayButton_Click(object sender, EventArgs e)
     {
         DisplayPanel.Visible = true;
@@ -169,11 +161,37 @@ public partial class MainForm : Form
         if (EmployeeDepId.Text.Length > 20)
             EmployeeDepIdError.Text = "Invalid Input";
 
-        //FileOperation.writeEmployee(temp, FileOperation.getOffset());
+        FileOperation.writeEmployee(temp, (int)FileOperation.getOffset());
     }
-
     private void label5_Click(object sender, EventArgs e)
     {
 
+    }
+    private void FilterHandler(object sender, EventArgs e)
+    {
+        DisplayDataShow.Rows.Clear();
+        foreach (Employee emp in FileOperation.GetByDepId(int.Parse(DisplayDepartmentInput.Text)))
+        {
+            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+        }
+        foreach (Employee emp in FileOperation.GetByEmpId(int.Parse(DisplayIDInput.Text)))
+        {
+            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+        }
+    }
+    private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
+    {
+        if(DisplayPanel.Visible)
+        {
+            FilterHandler(sender, e);
+        }
+        else
+        {
+            DisplayDataShow.Rows.Clear();
+            DisplayNameInput.Text = "";
+            DisplayIDInput.Text = "";
+            DisplayDepartmentInput.Text = "";
+            DisplayDateInput.Text = "";
+        }
     }
 }
