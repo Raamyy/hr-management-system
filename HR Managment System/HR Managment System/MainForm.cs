@@ -169,10 +169,15 @@ public partial class MainForm : Form
         if (EmployeeDepId.Text.Length > 20)
             EmployeeDepIdError.Text = "Invalid Input";
 
-        //FileOperation.writeEmployee(temp, FileOperation.getOffset());
+        FileOperation.writeEmployee(temp, FileOperation.getOffset());
     }
 
     private void label5_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
     {
 
     }

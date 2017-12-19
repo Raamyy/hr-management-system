@@ -8,6 +8,7 @@ using System.IO;
 class FileOperation
 {
     static string id, name, depId, hireDate, depName;
+<<<<<<< HEAD
     private static char[] chId = new char[5];
     private static char[] chName = new char[20];
     private static char[] chDepId = new char[5];
@@ -15,6 +16,13 @@ class FileOperation
     private static char[] chDepName = new char[10];
     private static Dictionary<int, bool> IsUniqueEmployeeID = new Dictionary<int, bool>();
     private static Dictionary<int, bool> IsUniqueDepartmentID = new Dictionary<int, bool>();
+=======
+    private static char[] chId;
+    private static char[] chName;
+    private static char[] chDepId;
+    private static char[] chHireDate;
+    private static char[] chDepName;
+>>>>>>> 78a73041ecec7f299d01e3b985f1c8d79a91d796
     FileOperation()
     {
 
@@ -155,22 +163,25 @@ class FileOperation
         return Emp;
     }
 
-    public static bool writeEmployee(Employee emp, int offset)
+    public static bool writeEmployee(Employee emp, long offset)
     {
         id = emp.Id.ToString(); name = emp.Name; depId = emp.DepId.ToString();
-        hireDate = emp.HireDate.ToString();
+        hireDate = emp.HireDate.ToShortDateString();
 
         if (id.Length <= 5 && name.Length <= 20 && hireDate.Length <= 10 && depId.Length <= 5)
         {
-            FileStream Fs = new FileStream("Employees.txt", FileMode.Append, FileAccess.Write);
+            FileStream Fs = new FileStream("Employees.txt", FileMode.Open, FileAccess.Write);
             StreamWriter st = new StreamWriter(Fs);
             st.Flush();
-            if (offset < Fs.Length)
-                st.BaseStream.Seek(offset, SeekOrigin.Begin);
-            id.CopyTo(0, chId, 0, 5);
-            name.CopyTo(0, chName, 0, 20);
-            depId.CopyTo(0, chDepId, 0, 5);
-            hireDate.CopyTo(0, chHireDate, 0, 10);
+            st.BaseStream.Seek(offset, SeekOrigin.Begin);
+
+            chId = new char[5]; chName = new char[20]; chHireDate = new char[10];
+            chDepId = new char[5];
+
+            id.CopyTo(0, chId, 0, id.Length);
+            name.CopyTo(0, chName, 0, name.Length);
+            depId.CopyTo(0, chDepId, 0, depId.Length);
+            hireDate.CopyTo(0, chHireDate, 0, hireDate.Length);
 
             IsUniqueEmployeeID[int.Parse(id)] = true;       //
             st.Write(chId, 0, 5);
@@ -217,8 +228,9 @@ class FileOperation
         {
             FileStream Fs = new FileStream("Department.txt", FileMode.Append, FileAccess.Write);
             StreamWriter sw = new StreamWriter(Fs);
-            depId.CopyTo(0, chDepId, 0, 5);
-            depName.CopyTo(0, chDepName, 0, 20);
+            chDepId = new char[5]; chDepName = new char[20];
+            depId.CopyTo(0, chDepId, 0, depId.Length);
+            depName.CopyTo(0, chDepName, 0, depName.Length);
             sw.Write(depId, 0, 5);
             sw.Write(depName, 0, 20);
             IsUniqueDepartmentID[int.Parse(depId)] = true;  // 
@@ -230,6 +242,8 @@ class FileOperation
     public static long getOffset()
     {
         FileStream Fs = new FileStream("Employees.txt", FileMode.OpenOrCreate);
-        return Fs.Length;
+        long length = Fs.Length;
+        Fs.Close();
+        return length;
     }
 }
