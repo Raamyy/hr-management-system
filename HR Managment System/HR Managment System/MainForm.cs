@@ -139,7 +139,8 @@ public partial class MainForm : Form
 
     private void WriteButton_Click(object sender, EventArgs e)
     {
-
+		Adding.Show();
+		LandingPanel.Hide();
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -215,7 +216,7 @@ public partial class MainForm : Form
     {
 
     }
-
+    
     private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
     {
 
@@ -226,4 +227,63 @@ public partial class MainForm : Form
         WritingPanel.Hide();
         LandingPanel.Show();
     }
+
+	private void label6_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void textBox1_TextChanged(object sender, EventArgs e)
+	{
+
+	}
+
+	private void textBox2_TextChanged(object sender, EventArgs e)
+	{
+
+	}
+
+	private void submitdept_Click(object sender, EventArgs e)
+	{
+		if(deptid.Text.Length >5 || deptname.Text.Length > 20)
+		{
+			MessageBox.Show("You exceeded length limits!!");
+			return;
+		}
+		else if (deptid.Text.Length==0 || deptname.Text.Length == 0)
+		{
+			MessageBox.Show("You can't leave field empty!!");
+			return;
+		}
+		
+		//na2es hena case law el id aw el name mawgoden
+		Departement newdep = new Departement();
+		newdep.Id = int.Parse(deptid.Text);
+		newdep.Name = deptname.Text;
+		FileOperation.writeDep(newdep);
+	}
+
+	private void button1_Click(object sender, EventArgs e)
+	{
+		AddingDept.Show();
+		Adding.Hide();
+	}
+
+	private void addempbut_Click(object sender, EventArgs e)
+	{
+		WritingPanel.Show();
+		Adding.Hide();
+	}
+
+	private void button1_Click_1(object sender, EventArgs e)
+	{
+		Adding.Show();
+		AddingDept.Hide();
+	}
+
+	private void backbt2_Click(object sender, EventArgs e)
+	{
+		LandingPanel.Show();
+		Adding.Hide();
+	}
 }
