@@ -153,15 +153,16 @@ public partial class MainForm : Form
         temp.Id = int.Parse(EmployeeId.Text);
         temp.Name = EmployeeName.Text;
         temp.DepId = int.Parse(EmployeeDepId.Text);
+        temp.HireDate = EmployeeHiryDate.Value;
 
         if (temp.Name.Length > 20)
             EmployeeNameError.Text = "Invalid Input";
-         if (EmployeeId.Text.Length > 20)
+        if (EmployeeId.Text.Length > 20)
             EmployeeIdError.Text = "Invalid Input";
         if (EmployeeDepId.Text.Length > 20)
             EmployeeDepIdError.Text = "Invalid Input";
-
-        FileOperation.writeEmployee(temp, (int)FileOperation.getOffset());
+        FileOperation.writeEmployee(temp, FileOperation.getOffset());
+        Submit_Result.Text = "Employee was addded succesfully!";
     }
     private void label5_Click(object sender, EventArgs e)
     {
@@ -170,18 +171,24 @@ public partial class MainForm : Form
     private void FilterHandler(object sender, EventArgs e)
     {
         DisplayDataShow.Rows.Clear();
-        foreach (Employee emp in FileOperation.GetByDepId(int.Parse(DisplayDepartmentInput.Text)))
+        if (int.TryParse(DisplayDepartmentInput.Text, out int n))
         {
-            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            foreach (Employee emp in FileOperation.GetByDepId(n))
+            {
+                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            }
         }
-        foreach (Employee emp in FileOperation.GetByEmpId(int.Parse(DisplayIDInput.Text)))
+        if (int.TryParse(DisplayIDInput.Text, out int m))
         {
-            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            foreach (Employee emp in FileOperation.GetByEmpId(m))
+            {
+                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            }
         }
     }
     private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
     {
-        if(DisplayPanel.Visible)
+        if (DisplayPanel.Visible)
         {
             FilterHandler(sender, e);
         }
@@ -193,5 +200,30 @@ public partial class MainForm : Form
             DisplayDepartmentInput.Text = "";
             DisplayDateInput.Text = "";
         }
+    }
+    private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label5_Click_1(object sender, EventArgs e)
+    {
+
+    }
+
+    private void SearchEditableHiringDate_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void BackButton_Click(object sender, EventArgs e)
+    {
+        WritingPanel.Hide();
+        LandingPanel.Show();
     }
 }

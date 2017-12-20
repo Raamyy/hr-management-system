@@ -44,10 +44,6 @@ partial class MainForm
             this.DisplayDepartmentInput = new System.Windows.Forms.TextBox();
             this.DisplayBackButton = new System.Windows.Forms.Button();
             this.DisplayDataShow = new System.Windows.Forms.DataGridView();
-            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.SearchEditableHiringDate = new System.Windows.Forms.DateTimePicker();
             this.SearchBack = new System.Windows.Forms.Button();
@@ -70,6 +66,9 @@ partial class MainForm
             this.SearchLabelName = new System.Windows.Forms.Label();
             this.SearchText = new System.Windows.Forms.TextBox();
             this.WritingPanel = new System.Windows.Forms.Panel();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.EmployeeHiryDate = new System.Windows.Forms.DateTimePicker();
+            this.Submit_Result = new System.Windows.Forms.Label();
             this.EmployeeDepIdError = new System.Windows.Forms.Label();
             this.EmployeeIdError = new System.Windows.Forms.Label();
             this.EmployeeNameError = new System.Windows.Forms.Label();
@@ -78,11 +77,15 @@ partial class MainForm
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.EmployeeHiringDate = new System.Windows.Forms.TextBox();
             this.EmployeeDepId = new System.Windows.Forms.TextBox();
             this.EmployeeId = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
             this.EmployeeName = new System.Windows.Forms.TextBox();
+            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Display_DepartmentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             this.EmployeeBox.SuspendLayout();
@@ -95,10 +98,10 @@ partial class MainForm
             // DisplayButton
             // 
             this.DisplayButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DisplayButton.Location = new System.Drawing.Point(222, 12);
+            this.DisplayButton.Location = new System.Drawing.Point(222, 10);
             this.DisplayButton.Name = "DisplayButton";
-            this.DisplayButton.Size = new System.Drawing.Size(268, 137);
-            this.DisplayButton.TabIndex = 0;
+            this.DisplayButton.Size = new System.Drawing.Size(268, 140);
+            this.DisplayButton.TabIndex = 2;
             this.DisplayButton.Text = "Display";
             this.DisplayButton.UseVisualStyleBackColor = true;
             this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
@@ -110,7 +113,7 @@ partial class MainForm
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(268, 79);
             this.SearchButton.TabIndex = 1;
-            this.SearchButton.Text = "Search";
+            this.SearchButton.Text = "Update";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
@@ -156,25 +159,29 @@ partial class MainForm
             this.EmployeeBox.Controls.Add(this.DisplayNameInput);
             this.EmployeeBox.Controls.Add(this.DummyIDLabel);
             this.EmployeeBox.Controls.Add(this.DummyNameLabel);
-            this.EmployeeBox.Location = new System.Drawing.Point(462, 93);
+            this.EmployeeBox.Location = new System.Drawing.Point(531, 93);
+            this.EmployeeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeBox.Name = "EmployeeBox";
-            this.EmployeeBox.Size = new System.Drawing.Size(216, 151);
+            this.EmployeeBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmployeeBox.Size = new System.Drawing.Size(163, 103);
             this.EmployeeBox.TabIndex = 6;
             this.EmployeeBox.TabStop = false;
             this.EmployeeBox.Text = "Filter By Employee";
             // 
             // DisplayDateInput
             // 
-            this.DisplayDateInput.Location = new System.Drawing.Point(78, 117);
+            this.DisplayDateInput.Location = new System.Drawing.Point(73, 79);
+            this.DisplayDateInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DisplayDateInput.Name = "DisplayDateInput";
-            this.DisplayDateInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayDateInput.Size = new System.Drawing.Size(83, 20);
             this.DisplayDateInput.TabIndex = 5;
             this.DisplayDateInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
             // DummyHireDateLabel
             // 
             this.DummyHireDateLabel.AutoSize = true;
-            this.DummyHireDateLabel.Location = new System.Drawing.Point(9, 120);
+            this.DummyHireDateLabel.Location = new System.Drawing.Point(6, 82);
+            this.DummyHireDateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DummyHireDateLabel.Name = "DummyHireDateLabel";
             this.DummyHireDateLabel.Size = new System.Drawing.Size(52, 13);
             this.DummyHireDateLabel.TabIndex = 4;
@@ -182,24 +189,27 @@ partial class MainForm
             // 
             // DisplayIDInput
             // 
-            this.DisplayIDInput.Location = new System.Drawing.Point(78, 75);
+            this.DisplayIDInput.Location = new System.Drawing.Point(73, 50);
+            this.DisplayIDInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DisplayIDInput.Name = "DisplayIDInput";
-            this.DisplayIDInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayIDInput.Size = new System.Drawing.Size(83, 20);
             this.DisplayIDInput.TabIndex = 3;
             this.DisplayIDInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
             // DisplayNameInput
             // 
-            this.DisplayNameInput.Location = new System.Drawing.Point(78, 36);
+            this.DisplayNameInput.Location = new System.Drawing.Point(73, 24);
+            this.DisplayNameInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DisplayNameInput.Name = "DisplayNameInput";
-            this.DisplayNameInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayNameInput.Size = new System.Drawing.Size(83, 20);
             this.DisplayNameInput.TabIndex = 2;
             this.DisplayNameInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
             // DummyIDLabel
             // 
             this.DummyIDLabel.AutoSize = true;
-            this.DummyIDLabel.Location = new System.Drawing.Point(9, 78);
+            this.DummyIDLabel.Location = new System.Drawing.Point(6, 53);
+            this.DummyIDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DummyIDLabel.Name = "DummyIDLabel";
             this.DummyIDLabel.Size = new System.Drawing.Size(18, 13);
             this.DummyIDLabel.TabIndex = 1;
@@ -208,7 +218,8 @@ partial class MainForm
             // DummyNameLabel
             // 
             this.DummyNameLabel.AutoSize = true;
-            this.DummyNameLabel.Location = new System.Drawing.Point(9, 39);
+            this.DummyNameLabel.Location = new System.Drawing.Point(6, 27);
+            this.DummyNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DummyNameLabel.Name = "DummyNameLabel";
             this.DummyNameLabel.Size = new System.Drawing.Size(35, 13);
             this.DummyNameLabel.TabIndex = 0;
@@ -218,9 +229,11 @@ partial class MainForm
             // 
             this.DepartmentBox.Controls.Add(this.DummyDepartLabel);
             this.DepartmentBox.Controls.Add(this.DisplayDepartmentInput);
-            this.DepartmentBox.Location = new System.Drawing.Point(462, 19);
+            this.DepartmentBox.Location = new System.Drawing.Point(531, 15);
+            this.DepartmentBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DepartmentBox.Name = "DepartmentBox";
-            this.DepartmentBox.Size = new System.Drawing.Size(216, 68);
+            this.DepartmentBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DepartmentBox.Size = new System.Drawing.Size(165, 74);
             this.DepartmentBox.TabIndex = 5;
             this.DepartmentBox.TabStop = false;
             this.DepartmentBox.Text = "Filter By Department";
@@ -228,7 +241,7 @@ partial class MainForm
             // DummyDepartLabel
             // 
             this.DummyDepartLabel.AutoSize = true;
-            this.DummyDepartLabel.Location = new System.Drawing.Point(6, 37);
+            this.DummyDepartLabel.Location = new System.Drawing.Point(6, 28);
             this.DummyDepartLabel.Name = "DummyDepartLabel";
             this.DummyDepartLabel.Size = new System.Drawing.Size(62, 13);
             this.DummyDepartLabel.TabIndex = 1;
@@ -236,9 +249,10 @@ partial class MainForm
             // 
             // DisplayDepartmentInput
             // 
-            this.DisplayDepartmentInput.Location = new System.Drawing.Point(78, 34);
+            this.DisplayDepartmentInput.Location = new System.Drawing.Point(73, 25);
+            this.DisplayDepartmentInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DisplayDepartmentInput.Name = "DisplayDepartmentInput";
-            this.DisplayDepartmentInput.Size = new System.Drawing.Size(122, 20);
+            this.DisplayDepartmentInput.Size = new System.Drawing.Size(83, 20);
             this.DisplayDepartmentInput.TabIndex = 0;
             this.DisplayDepartmentInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
@@ -264,37 +278,15 @@ partial class MainForm
             this.DataID,
             this.DataName,
             this.DataHireDate,
+            this.Display_DepartmentNameColumn,
             this.DataDepartmenNo});
             this.DisplayDataShow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DisplayDataShow.Location = new System.Drawing.Point(12, 9);
+            this.DisplayDataShow.Location = new System.Drawing.Point(8, 6);
+            this.DisplayDataShow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DisplayDataShow.Name = "DisplayDataShow";
             this.DisplayDataShow.ReadOnly = true;
-            this.DisplayDataShow.Size = new System.Drawing.Size(439, 278);
+            this.DisplayDataShow.Size = new System.Drawing.Size(473, 190);
             this.DisplayDataShow.TabIndex = 3;
-            // 
-            // DataID
-            // 
-            this.DataID.HeaderText = "ID";
-            this.DataID.Name = "DataID";
-            this.DataID.ReadOnly = true;
-            // 
-            // DataName
-            // 
-            this.DataName.HeaderText = "Name";
-            this.DataName.Name = "DataName";
-            this.DataName.ReadOnly = true;
-            // 
-            // DataHireDate
-            // 
-            this.DataHireDate.HeaderText = "Hire Date";
-            this.DataHireDate.Name = "DataHireDate";
-            this.DataHireDate.ReadOnly = true;
-            // 
-            // DataDepartmenNo
-            // 
-            this.DataDepartmenNo.HeaderText = "Department No.";
-            this.DataDepartmenNo.Name = "DataDepartmenNo";
-            this.DataDepartmenNo.ReadOnly = true;
             // 
             // SearchPanel
             // 
@@ -331,6 +323,7 @@ partial class MainForm
             this.SearchEditableHiringDate.Size = new System.Drawing.Size(162, 20);
             this.SearchEditableHiringDate.TabIndex = 20;
             this.SearchEditableHiringDate.Visible = false;
+            this.SearchEditableHiringDate.ValueChanged += new System.EventHandler(this.SearchEditableHiringDate_ValueChanged);
             // 
             // SearchBack
             // 
@@ -519,6 +512,9 @@ partial class MainForm
             // 
             // WritingPanel
             // 
+            this.WritingPanel.Controls.Add(this.BackButton);
+            this.WritingPanel.Controls.Add(this.EmployeeHiryDate);
+            this.WritingPanel.Controls.Add(this.Submit_Result);
             this.WritingPanel.Controls.Add(this.EmployeeDepIdError);
             this.WritingPanel.Controls.Add(this.EmployeeIdError);
             this.WritingPanel.Controls.Add(this.EmployeeNameError);
@@ -527,7 +523,6 @@ partial class MainForm
             this.WritingPanel.Controls.Add(this.label3);
             this.WritingPanel.Controls.Add(this.label2);
             this.WritingPanel.Controls.Add(this.label1);
-            this.WritingPanel.Controls.Add(this.EmployeeHiringDate);
             this.WritingPanel.Controls.Add(this.EmployeeDepId);
             this.WritingPanel.Controls.Add(this.EmployeeId);
             this.WritingPanel.Controls.Add(this.Title);
@@ -536,6 +531,37 @@ partial class MainForm
             this.WritingPanel.Name = "WritingPanel";
             this.WritingPanel.Size = new System.Drawing.Size(710, 319);
             this.WritingPanel.TabIndex = 4;
+            this.WritingPanel.Visible = false;
+            // 
+            // BackButton
+            // 
+            this.BackButton.Location = new System.Drawing.Point(16, 15);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(57, 29);
+            this.BackButton.TabIndex = 15;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // EmployeeHiryDate
+            // 
+            this.EmployeeHiryDate.Location = new System.Drawing.Point(271, 249);
+            this.EmployeeHiryDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmployeeHiryDate.Name = "EmployeeHiryDate";
+            this.EmployeeHiryDate.Size = new System.Drawing.Size(137, 20);
+            this.EmployeeHiryDate.TabIndex = 14;
+            this.EmployeeHiryDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // Submit_Result
+            // 
+            this.Submit_Result.AutoSize = true;
+            this.Submit_Result.Location = new System.Drawing.Point(511, 294);
+            this.Submit_Result.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Submit_Result.Name = "Submit_Result";
+            this.Submit_Result.Size = new System.Drawing.Size(0, 13);
+            this.Submit_Result.TabIndex = 13;
+            this.Submit_Result.Click += new System.EventHandler(this.label5_Click_1);
             // 
             // EmployeeDepIdError
             // 
@@ -567,8 +593,8 @@ partial class MainForm
             // 
             // EmployeeSubmitButton
             // 
-            this.EmployeeSubmitButton.Location = new System.Drawing.Point(506, 278);
-            this.EmployeeSubmitButton.Margin = new System.Windows.Forms.Padding(2);
+            this.EmployeeSubmitButton.Location = new System.Drawing.Point(519, 253);
+            this.EmployeeSubmitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeSubmitButton.Name = "EmployeeSubmitButton";
             this.EmployeeSubmitButton.Size = new System.Drawing.Size(97, 29);
             this.EmployeeSubmitButton.TabIndex = 9;
@@ -617,18 +643,10 @@ partial class MainForm
             this.label1.Text = "Name";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // EmployeeHiringDate
-            // 
-            this.EmployeeHiringDate.Location = new System.Drawing.Point(271, 248);
-            this.EmployeeHiringDate.Margin = new System.Windows.Forms.Padding(2);
-            this.EmployeeHiringDate.Name = "EmployeeHiringDate";
-            this.EmployeeHiringDate.Size = new System.Drawing.Size(137, 20);
-            this.EmployeeHiringDate.TabIndex = 4;
-            // 
             // EmployeeDepId
             // 
             this.EmployeeDepId.Location = new System.Drawing.Point(271, 199);
-            this.EmployeeDepId.Margin = new System.Windows.Forms.Padding(2);
+            this.EmployeeDepId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeDepId.Name = "EmployeeDepId";
             this.EmployeeDepId.Size = new System.Drawing.Size(137, 20);
             this.EmployeeDepId.TabIndex = 3;
@@ -636,7 +654,7 @@ partial class MainForm
             // EmployeeId
             // 
             this.EmployeeId.Location = new System.Drawing.Point(271, 150);
-            this.EmployeeId.Margin = new System.Windows.Forms.Padding(2);
+            this.EmployeeId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeId.Name = "EmployeeId";
             this.EmployeeId.Size = new System.Drawing.Size(137, 20);
             this.EmployeeId.TabIndex = 2;
@@ -655,10 +673,41 @@ partial class MainForm
             // EmployeeName
             // 
             this.EmployeeName.Location = new System.Drawing.Point(271, 105);
-            this.EmployeeName.Margin = new System.Windows.Forms.Padding(2);
+            this.EmployeeName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EmployeeName.Name = "EmployeeName";
             this.EmployeeName.Size = new System.Drawing.Size(137, 20);
             this.EmployeeName.TabIndex = 0;
+            // 
+            // DataID
+            // 
+            this.DataID.HeaderText = "ID";
+            this.DataID.Name = "DataID";
+            this.DataID.ReadOnly = true;
+            this.DataID.Width = 30;
+            // 
+            // DataName
+            // 
+            this.DataName.HeaderText = "Name";
+            this.DataName.Name = "DataName";
+            this.DataName.ReadOnly = true;
+            // 
+            // DataHireDate
+            // 
+            this.DataHireDate.HeaderText = "Hire Date";
+            this.DataHireDate.Name = "DataHireDate";
+            this.DataHireDate.ReadOnly = true;
+            // 
+            // Display_DepartmentNameColumn
+            // 
+            this.Display_DepartmentNameColumn.HeaderText = "Department Name";
+            this.Display_DepartmentNameColumn.Name = "Display_DepartmentNameColumn";
+            this.Display_DepartmentNameColumn.ReadOnly = true;
+            // 
+            // DataDepartmenNo
+            // 
+            this.DataDepartmenNo.HeaderText = "Department No.";
+            this.DataDepartmenNo.Name = "DataDepartmenNo";
+            this.DataDepartmenNo.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -667,8 +716,8 @@ partial class MainForm
             this.ClientSize = new System.Drawing.Size(707, 319);
             this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.LandingPanel);
-            this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.WritingPanel);
+            this.Controls.Add(this.SearchPanel);
             this.Name = "MainForm";
             this.Text = "HRMS";
             this.LandingPanel.ResumeLayout(false);
@@ -696,10 +745,6 @@ partial class MainForm
     private System.Windows.Forms.Label DummyDepartLabel;
     private System.Windows.Forms.TextBox DisplayDepartmentInput;
     private System.Windows.Forms.DataGridView DisplayDataShow;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataID;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataHireDate;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataDepartmenNo;
     private System.Windows.Forms.Button DisplayBackButton;
     private System.Windows.Forms.Panel SearchPanel;
     private System.Windows.Forms.Label SearchValueDepartmentNo;
@@ -732,7 +777,6 @@ partial class MainForm
     private System.Windows.Forms.Label Title;
     private System.Windows.Forms.TextBox EmployeeName;
     private System.Windows.Forms.Button EmployeeSubmitButton;
-    private System.Windows.Forms.TextBox EmployeeHiringDate;
     private System.Windows.Forms.Label EmployeeNameError;
     private System.Windows.Forms.Label EmployeeDepIdError;
     private System.Windows.Forms.Label EmployeeIdError;
@@ -744,5 +788,13 @@ partial class MainForm
     private System.Windows.Forms.Label DummyNameLabel;
     private System.Windows.Forms.GroupBox DepartmentBox;
     private System.Windows.Forms.TextBox DisplayDateInput;
+    private System.Windows.Forms.Label Submit_Result;
+    private System.Windows.Forms.DateTimePicker EmployeeHiryDate;
+    private System.Windows.Forms.Button BackButton;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataID;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataHireDate;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Display_DepartmentNameColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataDepartmenNo;
 }
 
