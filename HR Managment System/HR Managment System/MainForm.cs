@@ -7,14 +7,6 @@ public partial class MainForm : Form
     {
         InitializeComponent();
     }
-    private void PanelDisplayButton_Click(object sender, EventArgs e)
-    {
-        DisplayDataShow.Rows.Clear();
-        foreach (Employee emp in FileOperation.GetByDepId(int.Parse(DisplayDepartmentTextBox.Text)))
-        {
-            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
-        }
-    }
     private void DisplayButton_Click(object sender, EventArgs e)
     {
         DisplayPanel.Visible = true;
@@ -147,7 +139,8 @@ public partial class MainForm : Form
 
     private void WriteButton_Click(object sender, EventArgs e)
     {
-
+		Adding.Show();
+		LandingPanel.Hide();
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -165,20 +158,50 @@ public partial class MainForm : Form
 
         if (temp.Name.Length > 20)
             EmployeeNameError.Text = "Invalid Input";
-         if (EmployeeId.Text.Length > 20)
+        if (EmployeeId.Text.Length > 20)
             EmployeeIdError.Text = "Invalid Input";
         if (EmployeeDepId.Text.Length > 20)
             EmployeeDepIdError.Text = "Invalid Input";
-
         FileOperation.writeEmployee(temp, FileOperation.getOffset());
         Submit_Result.Text = "Employee was addded succesfully!";
     }
-
     private void label5_Click(object sender, EventArgs e)
     {
 
     }
-
+    private void FilterHandler(object sender, EventArgs e)
+    {
+        DisplayDataShow.Rows.Clear();
+        if (int.TryParse(DisplayDepartmentInput.Text, out int n))
+        {
+            foreach (Employee emp in FileOperation.GetByDepId(n))
+            {
+                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            }
+        }
+        if (int.TryParse(DisplayIDInput.Text, out int m))
+        {
+            foreach (Employee emp in FileOperation.GetByEmpId(m))
+            {
+                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+            }
+        }
+    }
+    private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
+    {
+        if (DisplayPanel.Visible)
+        {
+            FilterHandler(sender, e);
+        }
+        else
+        {
+            DisplayDataShow.Rows.Clear();
+            DisplayNameInput.Text = "";
+            DisplayIDInput.Text = "";
+            DisplayDepartmentInput.Text = "";
+            DisplayDateInput.Text = "";
+        }
+    }
     private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
     {
 
@@ -193,7 +216,7 @@ public partial class MainForm : Form
     {
 
     }
-
+    
     private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
     {
 
@@ -203,6 +226,64 @@ public partial class MainForm : Form
     {
         WritingPanel.Hide();
         LandingPanel.Show();
-
     }
+
+	private void label6_Click(object sender, EventArgs e)
+	{
+
+	}
+
+	private void textBox1_TextChanged(object sender, EventArgs e)
+	{
+
+	}
+
+	private void textBox2_TextChanged(object sender, EventArgs e)
+	{
+
+	}
+
+	private void submitdept_Click(object sender, EventArgs e)
+	{
+		if(deptid.Text.Length >5 || deptname.Text.Length > 20)
+		{
+			MessageBox.Show("You exceeded length limits!!");
+			return;
+		}
+		else if (deptid.Text.Length==0 || deptname.Text.Length == 0)
+		{
+			MessageBox.Show("You can't leave field empty!!");
+			return;
+		}
+		
+		//na2es hena case law el id aw el name mawgoden
+		Departement newdep = new Departement();
+		newdep.Id = int.Parse(deptid.Text);
+		newdep.Name = deptname.Text;
+		FileOperation.writeDep(newdep);
+	}
+
+	private void button1_Click(object sender, EventArgs e)
+	{
+		AddingDept.Show();
+		Adding.Hide();
+	}
+
+	private void addempbut_Click(object sender, EventArgs e)
+	{
+		WritingPanel.Show();
+		Adding.Hide();
+	}
+
+	private void button1_Click_1(object sender, EventArgs e)
+	{
+		Adding.Show();
+		AddingDept.Hide();
+	}
+
+	private void backbt2_Click(object sender, EventArgs e)
+	{
+		LandingPanel.Show();
+		Adding.Hide();
+	}
 }
