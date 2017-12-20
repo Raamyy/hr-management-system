@@ -25,7 +25,7 @@ class FileOperation
 
     public static List<Employee> read() //returns list of all employees in the file.
     {
-        if (File.Exists("employees.txt"))
+        if (File.Exists("Employees.txt"))
         {
 
             FileStream FS = new FileStream("Employees.txt", FileMode.Open);
