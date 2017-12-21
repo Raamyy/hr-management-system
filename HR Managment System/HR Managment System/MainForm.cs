@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 public partial class MainForm : Form
@@ -139,8 +140,8 @@ public partial class MainForm : Form
 
     private void WriteButton_Click(object sender, EventArgs e)
     {
-		Adding.Show();
-		LandingPanel.Hide();
+        Adding.Show();
+        LandingPanel.Hide();
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -171,21 +172,41 @@ public partial class MainForm : Form
     }
     private void FilterHandler(object sender, EventArgs e)
     {
+        SortedSet<Employee> set = new SortedSet<Employee>();
         DisplayDataShow.Rows.Clear();
         int n;
-        if (int.TryParse(DisplayDepartmentInput.Text, out n))
+        if(DisplayDepartmentInput.Text == "" && DisplayIDInput.Text == "" && DisplayNameInput.Text == "" && DisplayDepartmentNoInput.Text == "")
+        {
+            foreach (Employee emp in FileOperation.read())
+            {
+                set.Add(emp);
+            }
+        }
+        if (int.TryParse(DisplayDepartmentNoInput.Text, out n))
         {
             foreach (Employee emp in FileOperation.GetByDepId(n))
             {
-                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+                set.Add(emp);
             }
         }
         if (int.TryParse(DisplayIDInput.Text, out n))
         {
             foreach (Employee emp in FileOperation.GetByEmpId(n))
             {
-                DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
+                set.Add(emp);
             }
+        }
+        foreach (Employee emp in FileOperation.GetByDepName(DisplayDepartmentInput.Text))
+        {
+            set.Add(emp);
+        }
+        foreach (Employee emp in FileOperation.GetByEmpName(DisplayNameInput.Text))
+        {
+            set.Add(emp);
+        }
+        foreach(Employee emp in set)
+        {
+            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), "TODO", emp.DepId);
         }
     }
     private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
@@ -200,7 +221,7 @@ public partial class MainForm : Form
             DisplayNameInput.Text = "";
             DisplayIDInput.Text = "";
             DisplayDepartmentInput.Text = "";
-            DisplayDateInput.Text = "";
+            DisplayDepartmentNoInput.Text = "";
         }
     }
     private void EmployeeHiringDate_TextChanged(object sender, EventArgs e)
@@ -217,7 +238,7 @@ public partial class MainForm : Form
     {
 
     }
-    
+
     private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
     {
 
@@ -229,62 +250,62 @@ public partial class MainForm : Form
         LandingPanel.Show();
     }
 
-	private void label6_Click(object sender, EventArgs e)
-	{
+    private void label6_Click(object sender, EventArgs e)
+    {
 
-	}
+    }
 
-	private void textBox1_TextChanged(object sender, EventArgs e)
-	{
+    private void textBox1_TextChanged(object sender, EventArgs e)
+    {
 
-	}
+    }
 
-	private void textBox2_TextChanged(object sender, EventArgs e)
-	{
+    private void textBox2_TextChanged(object sender, EventArgs e)
+    {
 
-	}
+    }
 
-	private void submitdept_Click(object sender, EventArgs e)
-	{
-		if(deptid.Text.Length >5 || deptname.Text.Length > 20)
-		{
-			MessageBox.Show("You exceeded length limits!!");
-			return;
-		}
-		else if (deptid.Text.Length==0 || deptname.Text.Length == 0)
-		{
-			MessageBox.Show("You can't leave field empty!!");
-			return;
-		}
-		
-		//na2es hena case law el id aw el name mawgoden
-		Departement newdep = new Departement();
-		newdep.Id = int.Parse(deptid.Text);
-		newdep.Name = deptname.Text;
-		FileOperation.writeDep(newdep);
-	}
+    private void submitdept_Click(object sender, EventArgs e)
+    {
+        if (deptid.Text.Length > 5 || deptname.Text.Length > 20)
+        {
+            MessageBox.Show("You exceeded length limits!!");
+            return;
+        }
+        else if (deptid.Text.Length == 0 || deptname.Text.Length == 0)
+        {
+            MessageBox.Show("You can't leave field empty!!");
+            return;
+        }
 
-	private void button1_Click(object sender, EventArgs e)
-	{
-		AddingDept.Show();
-		Adding.Hide();
-	}
+        //na2es hena case law el id aw el name mawgoden
+        Departement newdep = new Departement();
+        newdep.Id = int.Parse(deptid.Text);
+        newdep.Name = deptname.Text;
+        FileOperation.writeDep(newdep);
+    }
 
-	private void addempbut_Click(object sender, EventArgs e)
-	{
-		WritingPanel.Show();
-		Adding.Hide();
-	}
+    private void button1_Click(object sender, EventArgs e)
+    {
+        AddingDept.Show();
+        Adding.Hide();
+    }
 
-	private void button1_Click_1(object sender, EventArgs e)
-	{
-		Adding.Show();
-		AddingDept.Hide();
-	}
+    private void addempbut_Click(object sender, EventArgs e)
+    {
+        WritingPanel.Show();
+        Adding.Hide();
+    }
 
-	private void backbt2_Click(object sender, EventArgs e)
-	{
-		LandingPanel.Show();
-		Adding.Hide();
-	}
+    private void button1_Click_1(object sender, EventArgs e)
+    {
+        Adding.Show();
+        AddingDept.Hide();
+    }
+
+    private void backbt2_Click(object sender, EventArgs e)
+    {
+        LandingPanel.Show();
+        Adding.Hide();
+    }
 }

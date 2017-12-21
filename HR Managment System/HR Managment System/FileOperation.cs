@@ -114,6 +114,7 @@ class FileOperation
         List<Employee> AllEmployees = read();
         List<Departement> AllDepartements = Read_Dep();
         List<Employee> Emp = new List<Employee>();
+        if (AllDepartements == null) return Emp;
         Dictionary<int, string> GetDep = new Dictionary<int, string>();
 
         for (int i=0; i<AllDepartements.Count; i++)
@@ -133,6 +134,7 @@ class FileOperation
     {
         List<Employee> AllEmployees = read();
         List<Employee> Emp = new List<Employee>();
+        if (EmpName == "") return Emp;
         int idx;
         for (int i=0; i<AllEmployees.Count; i++)
         {
