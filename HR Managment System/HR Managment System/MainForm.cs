@@ -23,7 +23,15 @@ public partial class MainForm : Form
     int ActiveUID;
     private void SearchPanelButton_Click(object sender, EventArgs e)
     {
-        ActiveEmployee = FileOperation.GetByEmpId(int.Parse(SearchText.Text))[0];
+        try
+        {
+            ActiveEmployee = FileOperation.GetByEmpId(int.Parse(SearchText.Text))[0];
+        }
+        catch
+        {
+            MessageBox.Show("ID Non Existant");
+            return;
+        }
         if (ActiveEmployee != null)
         {
             ActiveUID = int.Parse(SearchText.Text);
@@ -59,10 +67,15 @@ public partial class MainForm : Form
         }
         else
         {
+            if(SearchEditableName.Text.Length > 20 || SearchEditableName.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid Name");
+                return;
+            }
             SearchEditableName.Visible = false;
             SearchNameButton.Text = "Edit";
             ActiveEmployee.Name = SearchEditableName.Text;
-            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
+            FileOperation.FileErrorType res = FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
             SearchValueName.Text = SearchEditableName.Text;
         }
     }
@@ -76,12 +89,24 @@ public partial class MainForm : Form
         }
         else
         {
+            if (SearchEditableID.Text.Length > 5 || SearchEditableID.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid ID");
+                return;
+            }
             SearchEditableID.Visible = false;
             SearchIDButton.Text = "Edit";
             ActiveEmployee.Id = int.Parse(SearchEditableID.Text);
-            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
-            ActiveUID = int.Parse(SearchEditableID.Text);
-            SearchValueID.Text = SearchEditableID.Text;
+            if (FileOperation.updateEmployee(ActiveUID, ActiveEmployee) == FileOperation.FileErrorType.InvalidEmployeeID)
+            {
+                MessageBox.Show("ID Already Used");
+            }
+            else
+            {
+                FileOperation.UpdateEmpDic(ActiveUID, ActiveEmployee.Id);
+                ActiveUID = int.Parse(SearchEditableID.Text);
+                SearchValueID.Text = SearchEditableID.Text;
+            }
         }
     }
     private void SearchHiringDateButton_Click(object sender, EventArgs e)
@@ -111,11 +136,23 @@ public partial class MainForm : Form
         }
         else
         {
+            if (SearchEditableDepartmentNo.Text.Length > 5 || SearchEditableDepartmentNo.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid Department Number");
+                return;
+            }
             SearchEditableDepartmentNo.Visible = false;
             SearchDepartmentNoButton.Text = "Edit";
             ActiveEmployee.DepId = int.Parse(SearchEditableDepartmentNo.Text);
-            FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
-            SearchValueDepartmentNo.Text = SearchEditableDepartmentNo.Text;
+            FileOperation.FileErrorType res = FileOperation.updateEmployee(ActiveUID, ActiveEmployee);
+            if (res == FileOperation.FileErrorType.InvalidDepartmentID)
+            {
+                MessageBox.Show("Invalid Department");
+            }
+            else
+            {
+                SearchValueDepartmentNo.Text = SearchEditableDepartmentNo.Text;
+            }
         }
     }
     private void SearchBack_Click(object sender, EventArgs e)
@@ -167,16 +204,16 @@ public partial class MainForm : Form
             EmployeeIdError.Text = "Invalid Input";
         if (EmployeeDepId.Text.Length > 5 || EmployeeDepId.Text.Length == 0)
             EmployeeDepIdError.Text = "Invalid Input";
-        FileOperation.FileErrorType res = FileOperation.WriteEmployee(temp, FileOperation.getOffset());
+        FileOperation.FileErrorType res = FileOperation.WriteEmployee(temp, FileOperation.getOffset(), true);
         if (res == FileOperation.FileErrorType.NoError)
         {
             Submit_Result.Text = "Employee was addded succesfully!";
         }
-        else if(res == FileOperation.FileErrorType.InvalidDepartmentID)
+        else if (res == FileOperation.FileErrorType.InvalidDepartmentID)
         {
             EmployeeDepIdError.Text = "Department ID non-existant";
         }
-        else if(res == FileOperation.FileErrorType.InvalidEmployeeID)
+        else if (res == FileOperation.FileErrorType.InvalidEmployeeID)
         {
             EmployeeIdError.Text = "Employee ID used before";
         }
@@ -297,7 +334,7 @@ public partial class MainForm : Form
         Departement newdep = new Departement();
         newdep.Id = int.Parse(deptid.Text);
         newdep.Name = deptname.Text;
-        if(FileOperation.writeDep(newdep))
+        if (FileOperation.writeDep(newdep))
         {
             MessageBox.Show("Department Added Sucessfully");
         }

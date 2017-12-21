@@ -7,6 +7,7 @@ using System.IO;
 
 class FileOperation
 {
+    public enum FileErrorType { InvalidDepartmentID, InvalidEmployeeID, FieldOutOfRange, FieldNonExistant, NoError };
     static string id, name, depId, hireDate, depName;
     private static Dictionary<int, bool> IsUsedEmployeeID = new Dictionary<int, bool>();
     private static Dictionary<int, bool> IsUsedDepartmentID = new Dictionary<int, bool>();
@@ -23,7 +24,7 @@ class FileOperation
     public static string GetDepartmentName(int id)
     {
         List<Departement> Departments = Read_Dep();
-        foreach(Departement Dep in Departments)
+        foreach (Departement Dep in Departments)
         {
             if (Dep.Id.Equals(id))
                 return Dep.Name;
@@ -97,7 +98,7 @@ class FileOperation
 
                 temp.Name = Name;
                 Departments.Add(temp);
-                IsUsedDepartmentID[temp.Id] =  true; //reading the file updates the Departments IDs Dictionary
+                IsUsedDepartmentID[temp.Id] = true; //reading the file updates the Departments IDs Dictionary
             }
             sr.Close();
             return Departments;
@@ -143,7 +144,7 @@ class FileOperation
         if (EmpName == "") return Emp;
         for (int i = 0; i < AllEmployees.Count; i++)
         {
-            if(AllEmployees[i].Name.Trim('\0', ' ') == EmpName.Trim('\0', ' '))
+            if (AllEmployees[i].Name.Trim('\0', ' ') == EmpName.Trim('\0', ' '))
             {
                 Emp.Add(AllEmployees[i]);
             }
@@ -161,14 +162,13 @@ class FileOperation
         }
         return Emp;
     }
-    public enum FileErrorType { InvalidDepartmentID, InvalidEmployeeID, FieldOutOfRange, NoError };
-    public static FileErrorType WriteEmployee(Employee emp, long offset)
+    public static FileErrorType WriteEmployee(Employee emp, long offset, bool CheckID)
     {
         if (IsUsedDepartmentID.ContainsKey(emp.DepId) == false)
         {
             return FileErrorType.InvalidDepartmentID;
         }
-        if (IsUsedEmployeeID.ContainsKey(emp.Id) == true)
+        if (CheckID && IsUsedEmployeeID.ContainsKey(emp.Id) == true)
         {
             return FileErrorType.InvalidEmployeeID;
         }
@@ -199,31 +199,45 @@ class FileOperation
         st.Close();
         return FileErrorType.NoError;
     }
-    public static bool updateEmployee(int uId, Employee emp)
+    public static FileErrorType updateEmployee(int uId, Employee emp)
     {
         FileStream fs = new FileStream("Employees.txt", FileMode.Open, FileAccess.ReadWrite);
         StreamReader sr = new StreamReader(fs);
         int offset = 0;
         while (true)
         {
-            if (offset * 40 > fs.Length)
-            {
-                return false;
+            if (offset * 40 >= fs.Length)
+            { 
+                sr.Close();
+                return FileErrorType.FieldNonExistant;
             }
-            sr.BaseStream.Flush();
+            chId = new char[5];
+            sr.DiscardBufferedData();
             sr.BaseStream.Seek(offset * 40, SeekOrigin.Begin);
             sr.Read(chId, 0, 5);
-            id = chId.ToString();
+            id = new string(chId);
             if (int.Parse(id) == uId)
             {
                 break;
             }
             offset++;
         }
-        IsUsedEmployeeID.Add(emp.Id, true);      //
-        WriteEmployee(emp, offset);
-        return true;
+        sr.Close();
+        if(emp.Id == uId)
+        {
+            return WriteEmployee(emp, offset * 40, false);
+        }
+        else
+        {
+            return WriteEmployee(emp, offset * 40, true);
+        }
     }
+    public static void UpdateEmpDic(int PreviousId, int NewId)
+    {
+        IsUsedEmployeeID[PreviousId] = false;
+        IsUsedEmployeeID[NewId] = true;
+    }
+
     public static bool writeDep(Departement dep)
     {
         depId = dep.Id.ToString();
