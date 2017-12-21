@@ -188,40 +188,67 @@ public partial class MainForm : Form
 
     private void EmployeeSubmitButton_Click(object sender, EventArgs e)
     {
+        //Clearing existing error messages
         EmployeeNameError.Text = "";
         EmployeeDepIdError.Text = "";
         EmployeeIdError.Text = "";
         Submit_Result.Text = "";
+
+        //Displaying error messages if input is invalid
+        bool InvalidInput = false;
+        if (EmployeeName.Text.Length > 20 || EmployeeName.Text.Length == 0)
+        {
+            EmployeeNameError.Text = "Name's length should be between 1 and 20";
+            InvalidInput = true;
+        }
+        if (EmployeeId.Text.Length > 5 || EmployeeId.Text.Length == 0)
+        {
+            EmployeeIdError.Text = "ID's length should be between 1 and 5";
+            InvalidInput = true;
+        }
+        if (EmployeeDepId.Text.Length > 5 || EmployeeDepId.Text.Length == 0)
+        {
+            EmployeeDepIdError.Text = "ID's length should be between 1 and 5";
+            InvalidInput = true;
+        }
+        if (InvalidInput == true)
+            return;
+
+        //Creating Employee object with the entered data
         Employee temp = new Employee();
         temp.Id = int.Parse(EmployeeId.Text);
         temp.Name = EmployeeName.Text;
         temp.DepId = int.Parse(EmployeeDepId.Text);
         temp.HireDate = EmployeeHiryDate.Value;
 
-        if (temp.Name.Length > 20 || temp.Name.Length == 0)
-            EmployeeNameError.Text = "Invalid Input";
-        if (EmployeeId.Text.Length > 5 || EmployeeId.Text.Length == 0)
-            EmployeeIdError.Text = "Invalid Input";
-        if (EmployeeDepId.Text.Length > 5 || EmployeeDepId.Text.Length == 0)
-            EmployeeDepIdError.Text = "Invalid Input";
+        //Sending entered data to FileOperation class
         FileOperation.FileErrorType res = FileOperation.WriteEmployee(temp, FileOperation.getOffset(), true);
+
+        //Prompting the user with the submission result
         if (res == FileOperation.FileErrorType.NoError)
         {
             Submit_Result.Text = "Employee was addded succesfully!";
+
+            //Clearing input fields
+            EmployeeId.Text = "";
+            EmployeeName.Text = "";
+            EmployeeDepId.Text = "";
         }
         else if (res == FileOperation.FileErrorType.InvalidDepartmentID)
         {
-            EmployeeDepIdError.Text = "Department ID non-existant";
+            EmployeeDepIdError.Text = "Department ID doesn't exist";
         }
         else if (res == FileOperation.FileErrorType.InvalidEmployeeID)
         {
-            EmployeeIdError.Text = "Employee ID used before";
+            EmployeeIdError.Text = "Employee ID is used before";
         }
     }
+
     private void label5_Click(object sender, EventArgs e)
     {
 
     }
+
     private void FilterHandler(object sender, EventArgs e)
     {
         SortedSet<Employee> set = new SortedSet<Employee>();
@@ -261,6 +288,7 @@ public partial class MainForm : Form
             DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), FileOperation.GetDepartmentName(emp.DepId), emp.DepId);
         }
     }
+
     private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
     {
         if (DisplayPanel.Visible)
@@ -300,6 +328,11 @@ public partial class MainForm : Form
     {
         WritingPanel.Hide();
         LandingPanel.Show();
+
+        //Clearing input fields
+        EmployeeId.Text = "";
+        EmployeeName.Text = "";
+        EmployeeDepId.Text = "";
     }
 
     private void label6_Click(object sender, EventArgs e)
