@@ -159,8 +159,7 @@ class FileOperation
     public static bool writeEmployee(Employee emp, long offset)
     {
         id = emp.Id.ToString(); name = emp.Name; depId = emp.DepId.ToString();
-        hireDate = emp.HireDate.ToShortDateString();
-
+        hireDate = emp.HireDate.Day + "/" + emp.HireDate.Month + "/" + emp.HireDate.Year;
         if (id.Length <= 5 && name.Length <= 20 && hireDate.Length <= 10 && depId.Length <= 5)
         {
             FileStream Fs = new FileStream("Employees.txt", FileMode.Open, FileAccess.Write);
