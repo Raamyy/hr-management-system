@@ -172,16 +172,17 @@ public partial class MainForm : Form
     private void FilterHandler(object sender, EventArgs e)
     {
         DisplayDataShow.Rows.Clear();
-        if (int.TryParse(DisplayDepartmentInput.Text, out int n))
+        int n;
+        if (int.TryParse(DisplayDepartmentInput.Text, out n))
         {
             foreach (Employee emp in FileOperation.GetByDepId(n))
             {
                 DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
             }
         }
-        if (int.TryParse(DisplayIDInput.Text, out int m))
+        if (int.TryParse(DisplayIDInput.Text, out n))
         {
-            foreach (Employee emp in FileOperation.GetByEmpId(m))
+            foreach (Employee emp in FileOperation.GetByEmpId(n))
             {
                 DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), emp.DepId);
             }
