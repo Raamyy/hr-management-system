@@ -151,6 +151,10 @@ public partial class MainForm : Form
 
     private void EmployeeSubmitButton_Click(object sender, EventArgs e)
     {
+        EmployeeNameError.Text = "";
+        EmployeeDepIdError.Text = "";
+        EmployeeIdError.Text = "";
+        Submit_Result.Text = "";
         Employee temp = new Employee();
         temp.Id = int.Parse(EmployeeId.Text);
         temp.Name = EmployeeName.Text;
@@ -163,8 +167,19 @@ public partial class MainForm : Form
             EmployeeIdError.Text = "Invalid Input";
         if (EmployeeDepId.Text.Length > 20)
             EmployeeDepIdError.Text = "Invalid Input";
-        FileOperation.writeEmployee(temp, FileOperation.getOffset());
-        Submit_Result.Text = "Employee was addded succesfully!";
+        FileOperation.FileErrorType res = FileOperation.WriteEmployee(temp, FileOperation.getOffset());
+        if (res == FileOperation.FileErrorType.NoError)
+        {
+            Submit_Result.Text = "Employee was addded succesfully!";
+        }
+        else if(res == FileOperation.FileErrorType.InvalidDepartmentID)
+        {
+            EmployeeDepIdError.Text = "Department ID non-existant";
+        }
+        else if(res == FileOperation.FileErrorType.InvalidEmployeeID)
+        {
+            EmployeeIdError.Text = "Employee ID used before";
+        }
     }
     private void label5_Click(object sender, EventArgs e)
     {
@@ -175,7 +190,7 @@ public partial class MainForm : Form
         SortedSet<Employee> set = new SortedSet<Employee>();
         DisplayDataShow.Rows.Clear();
         int n;
-        if(DisplayDepartmentInput.Text == "" && DisplayIDInput.Text == "" && DisplayNameInput.Text == "" && DisplayDepartmentNoInput.Text == "")
+        if (DisplayDepartmentInput.Text == "" && DisplayIDInput.Text == "" && DisplayNameInput.Text == "" && DisplayDepartmentNoInput.Text == "")
         {
             foreach (Employee emp in FileOperation.read())
             {
@@ -204,7 +219,7 @@ public partial class MainForm : Form
         {
             set.Add(emp);
         }
-        foreach(Employee emp in set)
+        foreach (Employee emp in set)
         {
             DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), "TODO", emp.DepId);
         }
@@ -307,5 +322,13 @@ public partial class MainForm : Form
     {
         LandingPanel.Show();
         Adding.Hide();
+    }
+
+    private void WritingPanel_VisibleChanged(object sender, EventArgs e)
+    {
+        EmployeeNameError.Text = "";
+        EmployeeDepIdError.Text = "";
+        EmployeeIdError.Text = "";
+        Submit_Result.Text = "";
     }
 }

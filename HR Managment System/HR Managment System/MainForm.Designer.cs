@@ -42,11 +42,6 @@ partial class MainForm
             this.DisplayDepartmentInput = new System.Windows.Forms.TextBox();
             this.DisplayBackButton = new System.Windows.Forms.Button();
             this.DisplayDataShow = new System.Windows.Forms.DataGridView();
-            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Display_DepartmentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.SearchEditableHiringDate = new System.Windows.Forms.DateTimePicker();
             this.SearchBack = new System.Windows.Forms.Button();
@@ -98,6 +93,11 @@ partial class MainForm
             this.adddepbut = new System.Windows.Forms.Button();
             this.DummyDepartmentNoLabel = new System.Windows.Forms.Label();
             this.DisplayDepartmentNoInput = new System.Windows.Forms.TextBox();
+            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Display_DepartmentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             this.EmployeeBox.SuspendLayout();
@@ -280,39 +280,8 @@ partial class MainForm
             this.DisplayDataShow.Margin = new System.Windows.Forms.Padding(2);
             this.DisplayDataShow.Name = "DisplayDataShow";
             this.DisplayDataShow.ReadOnly = true;
-            this.DisplayDataShow.Size = new System.Drawing.Size(473, 190);
+            this.DisplayDataShow.Size = new System.Drawing.Size(519, 190);
             this.DisplayDataShow.TabIndex = 3;
-            // 
-            // DataID
-            // 
-            this.DataID.HeaderText = "ID";
-            this.DataID.Name = "DataID";
-            this.DataID.ReadOnly = true;
-            this.DataID.Width = 30;
-            // 
-            // DataName
-            // 
-            this.DataName.HeaderText = "Name";
-            this.DataName.Name = "DataName";
-            this.DataName.ReadOnly = true;
-            // 
-            // DataHireDate
-            // 
-            this.DataHireDate.HeaderText = "Hire Date";
-            this.DataHireDate.Name = "DataHireDate";
-            this.DataHireDate.ReadOnly = true;
-            // 
-            // Display_DepartmentNameColumn
-            // 
-            this.Display_DepartmentNameColumn.HeaderText = "Department Name";
-            this.Display_DepartmentNameColumn.Name = "Display_DepartmentNameColumn";
-            this.Display_DepartmentNameColumn.ReadOnly = true;
-            // 
-            // DataDepartmenNo
-            // 
-            this.DataDepartmenNo.HeaderText = "Department No.";
-            this.DataDepartmenNo.Name = "DataDepartmenNo";
-            this.DataDepartmenNo.ReadOnly = true;
             // 
             // SearchPanel
             // 
@@ -558,6 +527,7 @@ partial class MainForm
             this.WritingPanel.Size = new System.Drawing.Size(710, 319);
             this.WritingPanel.TabIndex = 4;
             this.WritingPanel.Visible = false;
+            this.WritingPanel.VisibleChanged += new System.EventHandler(this.WritingPanel_VisibleChanged);
             // 
             // BackButton
             // 
@@ -797,6 +767,7 @@ partial class MainForm
             this.Adding.Name = "Adding";
             this.Adding.Size = new System.Drawing.Size(710, 319);
             this.Adding.TabIndex = 13;
+            this.Adding.Visible = false;
             // 
             // backbt2
             // 
@@ -848,16 +819,47 @@ partial class MainForm
             this.DisplayDepartmentNoInput.TabIndex = 3;
             this.DisplayDepartmentNoInput.TextChanged += new System.EventHandler(this.FilterHandler);
             // 
+            // DataID
+            // 
+            this.DataID.HeaderText = "ID";
+            this.DataID.Name = "DataID";
+            this.DataID.ReadOnly = true;
+            this.DataID.Width = 75;
+            // 
+            // DataName
+            // 
+            this.DataName.HeaderText = "Name";
+            this.DataName.Name = "DataName";
+            this.DataName.ReadOnly = true;
+            // 
+            // DataHireDate
+            // 
+            this.DataHireDate.HeaderText = "Hire Date";
+            this.DataHireDate.Name = "DataHireDate";
+            this.DataHireDate.ReadOnly = true;
+            // 
+            // Display_DepartmentNameColumn
+            // 
+            this.Display_DepartmentNameColumn.HeaderText = "Department Name";
+            this.Display_DepartmentNameColumn.Name = "Display_DepartmentNameColumn";
+            this.Display_DepartmentNameColumn.ReadOnly = true;
+            // 
+            // DataDepartmenNo
+            // 
+            this.DataDepartmenNo.HeaderText = "Department No.";
+            this.DataDepartmenNo.Name = "DataDepartmenNo";
+            this.DataDepartmenNo.ReadOnly = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 319);
             this.Controls.Add(this.DisplayPanel);
-            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.WritingPanel);
-            this.Controls.Add(this.AddingDept);
+            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.Adding);
+            this.Controls.Add(this.AddingDept);
             this.Controls.Add(this.SearchPanel);
             this.Name = "MainForm";
             this.Text = "HRMS";
@@ -933,11 +935,6 @@ partial class MainForm
     private System.Windows.Forms.Label Submit_Result;
     private System.Windows.Forms.DateTimePicker EmployeeHiryDate;
     private System.Windows.Forms.Button BackButton;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataID;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataHireDate;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Display_DepartmentNameColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DataDepartmenNo;
     private System.Windows.Forms.Panel AddingDept;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
@@ -952,5 +949,10 @@ partial class MainForm
     private System.Windows.Forms.Button backbt2;
     private System.Windows.Forms.TextBox DisplayDepartmentNoInput;
     private System.Windows.Forms.Label DummyDepartmentNoLabel;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataID;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataHireDate;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Display_DepartmentNameColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DataDepartmenNo;
 }
 
