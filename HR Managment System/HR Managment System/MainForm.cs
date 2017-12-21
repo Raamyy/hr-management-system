@@ -161,11 +161,11 @@ public partial class MainForm : Form
         temp.DepId = int.Parse(EmployeeDepId.Text);
         temp.HireDate = EmployeeHiryDate.Value;
 
-        if (temp.Name.Length > 20)
+        if (temp.Name.Length > 20 || temp.Name.Length == 0)
             EmployeeNameError.Text = "Invalid Input";
-        if (EmployeeId.Text.Length > 20)
+        if (EmployeeId.Text.Length > 5 || EmployeeId.Text.Length == 0)
             EmployeeIdError.Text = "Invalid Input";
-        if (EmployeeDepId.Text.Length > 20)
+        if (EmployeeDepId.Text.Length > 5 || EmployeeDepId.Text.Length == 0)
             EmployeeDepIdError.Text = "Invalid Input";
         FileOperation.FileErrorType res = FileOperation.WriteEmployee(temp, FileOperation.getOffset());
         if (res == FileOperation.FileErrorType.NoError)

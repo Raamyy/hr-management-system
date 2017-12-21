@@ -130,11 +130,9 @@ class FileOperation
         List<Employee> AllEmployees = read();
         List<Employee> Emp = new List<Employee>();
         if (EmpName == "") return Emp;
-        int idx;
         for (int i = 0; i < AllEmployees.Count; i++)
         {
-            idx = AllEmployees[i].Name.IndexOf(EmpName);
-            if (idx != -1)
+            if(AllEmployees[i].Name.Trim('\0', ' ') == EmpName.Trim('\0', ' '))
             {
                 Emp.Add(AllEmployees[i]);
             }

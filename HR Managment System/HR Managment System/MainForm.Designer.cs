@@ -280,7 +280,7 @@ partial class MainForm
             this.DisplayDataShow.Margin = new System.Windows.Forms.Padding(2);
             this.DisplayDataShow.Name = "DisplayDataShow";
             this.DisplayDataShow.ReadOnly = true;
-            this.DisplayDataShow.Size = new System.Drawing.Size(519, 190);
+            this.DisplayDataShow.Size = new System.Drawing.Size(519, 282);
             this.DisplayDataShow.TabIndex = 3;
             // 
             // SearchPanel
@@ -855,8 +855,8 @@ partial class MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 319);
-            this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.WritingPanel);
+            this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.Adding);
             this.Controls.Add(this.AddingDept);
