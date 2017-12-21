@@ -221,7 +221,7 @@ public partial class MainForm : Form
         }
         foreach (Employee emp in set)
         {
-            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), "TODO", emp.DepId);
+            DisplayDataShow.Rows.Add(emp.Id.ToString(), emp.Name, emp.HireDate.ToShortDateString(), FileOperation.GetDepartmentName(emp.DepId), emp.DepId);
         }
     }
     private void DisplayPanel_VisibleChanged(object sender, EventArgs e)
@@ -297,7 +297,14 @@ public partial class MainForm : Form
         Departement newdep = new Departement();
         newdep.Id = int.Parse(deptid.Text);
         newdep.Name = deptname.Text;
-        FileOperation.writeDep(newdep);
+        if(FileOperation.writeDep(newdep))
+        {
+            MessageBox.Show("Department Added Sucessfully");
+        }
+        else
+        {
+            MessageBox.Show("Department already exist");
+        }
     }
 
     private void button1_Click(object sender, EventArgs e)

@@ -38,10 +38,17 @@ partial class MainForm
             this.DummyIDLabel = new System.Windows.Forms.Label();
             this.DummyNameLabel = new System.Windows.Forms.Label();
             this.DepartmentBox = new System.Windows.Forms.GroupBox();
+            this.DisplayDepartmentNoInput = new System.Windows.Forms.TextBox();
+            this.DummyDepartmentNoLabel = new System.Windows.Forms.Label();
             this.DummyDepartLabel = new System.Windows.Forms.Label();
             this.DisplayDepartmentInput = new System.Windows.Forms.TextBox();
             this.DisplayBackButton = new System.Windows.Forms.Button();
             this.DisplayDataShow = new System.Windows.Forms.DataGridView();
+            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Display_DepartmentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.SearchEditableHiringDate = new System.Windows.Forms.DateTimePicker();
             this.SearchBack = new System.Windows.Forms.Button();
@@ -91,13 +98,6 @@ partial class MainForm
             this.backbt2 = new System.Windows.Forms.Button();
             this.addempbut = new System.Windows.Forms.Button();
             this.adddepbut = new System.Windows.Forms.Button();
-            this.DummyDepartmentNoLabel = new System.Windows.Forms.Label();
-            this.DisplayDepartmentNoInput = new System.Windows.Forms.TextBox();
-            this.DataID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataHireDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Display_DepartmentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataDepartmenNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             this.EmployeeBox.SuspendLayout();
@@ -233,6 +233,23 @@ partial class MainForm
             this.DepartmentBox.TabStop = false;
             this.DepartmentBox.Text = "Filter By Department";
             // 
+            // DisplayDepartmentNoInput
+            // 
+            this.DisplayDepartmentNoInput.Location = new System.Drawing.Point(73, 49);
+            this.DisplayDepartmentNoInput.Name = "DisplayDepartmentNoInput";
+            this.DisplayDepartmentNoInput.Size = new System.Drawing.Size(83, 20);
+            this.DisplayDepartmentNoInput.TabIndex = 3;
+            this.DisplayDepartmentNoInput.TextChanged += new System.EventHandler(this.FilterHandler);
+            // 
+            // DummyDepartmentNoLabel
+            // 
+            this.DummyDepartmentNoLabel.AutoSize = true;
+            this.DummyDepartmentNoLabel.Location = new System.Drawing.Point(6, 52);
+            this.DummyDepartmentNoLabel.Name = "DummyDepartmentNoLabel";
+            this.DummyDepartmentNoLabel.Size = new System.Drawing.Size(44, 13);
+            this.DummyDepartmentNoLabel.TabIndex = 2;
+            this.DummyDepartmentNoLabel.Text = "Number";
+            // 
             // DummyDepartLabel
             // 
             this.DummyDepartLabel.AutoSize = true;
@@ -282,6 +299,37 @@ partial class MainForm
             this.DisplayDataShow.ReadOnly = true;
             this.DisplayDataShow.Size = new System.Drawing.Size(519, 282);
             this.DisplayDataShow.TabIndex = 3;
+            // 
+            // DataID
+            // 
+            this.DataID.HeaderText = "ID";
+            this.DataID.Name = "DataID";
+            this.DataID.ReadOnly = true;
+            this.DataID.Width = 75;
+            // 
+            // DataName
+            // 
+            this.DataName.HeaderText = "Name";
+            this.DataName.Name = "DataName";
+            this.DataName.ReadOnly = true;
+            // 
+            // DataHireDate
+            // 
+            this.DataHireDate.HeaderText = "Hire Date";
+            this.DataHireDate.Name = "DataHireDate";
+            this.DataHireDate.ReadOnly = true;
+            // 
+            // Display_DepartmentNameColumn
+            // 
+            this.Display_DepartmentNameColumn.HeaderText = "Department Name";
+            this.Display_DepartmentNameColumn.Name = "Display_DepartmentNameColumn";
+            this.Display_DepartmentNameColumn.ReadOnly = true;
+            // 
+            // DataDepartmenNo
+            // 
+            this.DataDepartmenNo.HeaderText = "Department No.";
+            this.DataDepartmenNo.Name = "DataDepartmenNo";
+            this.DataDepartmenNo.ReadOnly = true;
             // 
             // SearchPanel
             // 
@@ -802,65 +850,17 @@ partial class MainForm
             this.adddepbut.UseVisualStyleBackColor = true;
             this.adddepbut.Click += new System.EventHandler(this.button1_Click);
             // 
-            // DummyDepartmentNoLabel
-            // 
-            this.DummyDepartmentNoLabel.AutoSize = true;
-            this.DummyDepartmentNoLabel.Location = new System.Drawing.Point(6, 52);
-            this.DummyDepartmentNoLabel.Name = "DummyDepartmentNoLabel";
-            this.DummyDepartmentNoLabel.Size = new System.Drawing.Size(44, 13);
-            this.DummyDepartmentNoLabel.TabIndex = 2;
-            this.DummyDepartmentNoLabel.Text = "Number";
-            // 
-            // DisplayDepartmentNoInput
-            // 
-            this.DisplayDepartmentNoInput.Location = new System.Drawing.Point(73, 49);
-            this.DisplayDepartmentNoInput.Name = "DisplayDepartmentNoInput";
-            this.DisplayDepartmentNoInput.Size = new System.Drawing.Size(83, 20);
-            this.DisplayDepartmentNoInput.TabIndex = 3;
-            this.DisplayDepartmentNoInput.TextChanged += new System.EventHandler(this.FilterHandler);
-            // 
-            // DataID
-            // 
-            this.DataID.HeaderText = "ID";
-            this.DataID.Name = "DataID";
-            this.DataID.ReadOnly = true;
-            this.DataID.Width = 75;
-            // 
-            // DataName
-            // 
-            this.DataName.HeaderText = "Name";
-            this.DataName.Name = "DataName";
-            this.DataName.ReadOnly = true;
-            // 
-            // DataHireDate
-            // 
-            this.DataHireDate.HeaderText = "Hire Date";
-            this.DataHireDate.Name = "DataHireDate";
-            this.DataHireDate.ReadOnly = true;
-            // 
-            // Display_DepartmentNameColumn
-            // 
-            this.Display_DepartmentNameColumn.HeaderText = "Department Name";
-            this.Display_DepartmentNameColumn.Name = "Display_DepartmentNameColumn";
-            this.Display_DepartmentNameColumn.ReadOnly = true;
-            // 
-            // DataDepartmenNo
-            // 
-            this.DataDepartmenNo.HeaderText = "Department No.";
-            this.DataDepartmenNo.Name = "DataDepartmenNo";
-            this.DataDepartmenNo.ReadOnly = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 319);
-            this.Controls.Add(this.WritingPanel);
+            this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.DisplayPanel);
+            this.Controls.Add(this.AddingDept);
+            this.Controls.Add(this.WritingPanel);
             this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.Adding);
-            this.Controls.Add(this.AddingDept);
-            this.Controls.Add(this.SearchPanel);
             this.Name = "MainForm";
             this.Text = "HRMS";
             this.LandingPanel.ResumeLayout(false);

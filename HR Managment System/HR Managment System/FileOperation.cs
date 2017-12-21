@@ -19,6 +19,17 @@ class FileOperation
     {
 
     }
+
+    public static string GetDepartmentName(int id)
+    {
+        List<Departement> Departments = Read_Dep();
+        foreach(Departement Dep in Departments)
+        {
+            if (Dep.Id.Equals(id))
+                return Dep.Name;
+        }
+        return "";
+    }
     public static List<Employee> read() //returns list of all employees in the file.
     {
         if (File.Exists("Employees.txt"))
@@ -118,7 +129,7 @@ class FileOperation
         }
         for (int i = 0; i < AllEmployees.Count; i++)
         {
-            if (GetDep[AllEmployees[i].DepId] == DepName)
+            if (GetDep[AllEmployees[i].DepId].Trim('\0', ' ') == DepName)
             {
                 Emp.Add(AllEmployees[i]);
             }

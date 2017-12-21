@@ -71,17 +71,27 @@ public class Employee : IComparable
             return -1;
         }
     }
-    static public bool operator==(Employee first, Employee second)
+    static public bool operator==(Employee first, object second)
     {
-        if (first.Id == second.Id && first.Name == second.Name && first.DepId == second.DepId)
+        if (second == null || second.GetType() != typeof(Employee))
+        {
+            return false;
+        }
+        Employee Second = second as Employee;
+        if (first.Id == Second.Id && first.Name == Second.Name && first.DepId == Second.DepId)
         {
             return true;
         }
         return false;
     }
-    static public bool operator!=(Employee first, Employee second)
+    static public bool operator!=(Employee first, object second)
     {
-        if (first.Id == second.Id && first.Name == second.Name && first.DepId == second.DepId)
+        if(second == null || second.GetType() != typeof(Employee))
+        {
+            return true;
+        }
+        Employee Second = second as Employee;
+        if (first.Id == Second.Id && first.Name == Second.Name && first.DepId == Second.DepId)
         {
             return false;
         }
