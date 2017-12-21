@@ -19,6 +19,7 @@ public partial class MainForm : Form
         DisplayPanel.Visible = false;
         DisplayDataShow.Rows.Clear();
     }
+
     Employee ActiveEmployee;
     int ActiveUID;
     private void SearchPanelButton_Click(object sender, EventArgs e)

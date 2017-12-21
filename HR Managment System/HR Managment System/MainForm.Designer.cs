@@ -98,6 +98,7 @@ partial class MainForm
             this.backbt2 = new System.Windows.Forms.Button();
             this.addempbut = new System.Windows.Forms.Button();
             this.adddepbut = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             this.EmployeeBox.SuspendLayout();
@@ -112,44 +113,49 @@ partial class MainForm
             // DisplayButton
             // 
             this.DisplayButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DisplayButton.Location = new System.Drawing.Point(333, 15);
+            this.DisplayButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DisplayButton.Location = new System.Drawing.Point(333, 136);
             this.DisplayButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DisplayButton.Name = "DisplayButton";
-            this.DisplayButton.Size = new System.Drawing.Size(402, 205);
+            this.DisplayButton.Size = new System.Drawing.Size(402, 96);
             this.DisplayButton.TabIndex = 2;
-            this.DisplayButton.Text = "Display";
+            this.DisplayButton.Text = "Display current Employees";
             this.DisplayButton.UseVisualStyleBackColor = true;
             this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
             // 
             // SearchButton
             // 
             this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.SearchButton.Location = new System.Drawing.Point(333, 227);
+            this.SearchButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchButton.Location = new System.Drawing.Point(333, 244);
             this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(402, 115);
+            this.SearchButton.Size = new System.Drawing.Size(402, 98);
             this.SearchButton.TabIndex = 1;
-            this.SearchButton.Text = "Update";
+            this.SearchButton.Text = "Search/Edit";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // WriteButton
             // 
             this.WriteButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.WriteButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WriteButton.Location = new System.Drawing.Point(333, 351);
             this.WriteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.WriteButton.Name = "WriteButton";
             this.WriteButton.Size = new System.Drawing.Size(402, 73);
             this.WriteButton.TabIndex = 2;
-            this.WriteButton.Text = "Write";
+            this.WriteButton.Text = "Add Employee/Department";
             this.WriteButton.UseVisualStyleBackColor = true;
             this.WriteButton.Click += new System.EventHandler(this.WriteButton_Click);
             // 
             // LandingPanel
             // 
+            this.LandingPanel.Controls.Add(this.label7);
             this.LandingPanel.Controls.Add(this.DisplayButton);
             this.LandingPanel.Controls.Add(this.WriteButton);
             this.LandingPanel.Controls.Add(this.SearchButton);
+            this.LandingPanel.Font = new System.Drawing.Font("Trebuchet MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LandingPanel.Location = new System.Drawing.Point(0, 0);
             this.LandingPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LandingPanel.Name = "LandingPanel";
@@ -868,16 +874,26 @@ partial class MainForm
             this.adddepbut.UseVisualStyleBackColor = true;
             this.adddepbut.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(272, 30);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(546, 97);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "HR Manager";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 466);
-            this.Controls.Add(this.WritingPanel);
+            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.SearchPanel);
+            this.Controls.Add(this.WritingPanel);
             this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.AddingDept);
-            this.Controls.Add(this.LandingPanel);
             this.Controls.Add(this.Adding);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
@@ -973,5 +989,6 @@ partial class MainForm
     private System.Windows.Forms.DataGridViewTextBoxColumn DataHireDate;
     private System.Windows.Forms.DataGridViewTextBoxColumn Display_DepartmentNameColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn DataDepartmenNo;
+    private System.Windows.Forms.Label label7;
 }
 
