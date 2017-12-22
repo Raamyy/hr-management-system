@@ -31,6 +31,7 @@ partial class MainForm
             this.SearchButton = new System.Windows.Forms.Button();
             this.WriteButton = new System.Windows.Forms.Button();
             this.LandingPanel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.DisplayPanel = new System.Windows.Forms.Panel();
             this.EmployeeBox = new System.Windows.Forms.GroupBox();
             this.DisplayIDInput = new System.Windows.Forms.TextBox();
@@ -98,7 +99,6 @@ partial class MainForm
             this.backbt2 = new System.Windows.Forms.Button();
             this.addempbut = new System.Windows.Forms.Button();
             this.adddepbut = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.LandingPanel.SuspendLayout();
             this.DisplayPanel.SuspendLayout();
             this.EmployeeBox.SuspendLayout();
@@ -115,11 +115,11 @@ partial class MainForm
             this.DisplayButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.DisplayButton.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DisplayButton.Location = new System.Drawing.Point(333, 136);
-            this.DisplayButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DisplayButton.Margin = new System.Windows.Forms.Padding(4);
             this.DisplayButton.Name = "DisplayButton";
             this.DisplayButton.Size = new System.Drawing.Size(402, 96);
             this.DisplayButton.TabIndex = 2;
-            this.DisplayButton.Text = "Display current Employees";
+            this.DisplayButton.Text = "Display Employees";
             this.DisplayButton.UseVisualStyleBackColor = true;
             this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
             // 
@@ -128,11 +128,11 @@ partial class MainForm
             this.SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchButton.Location = new System.Drawing.Point(333, 244);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(402, 98);
             this.SearchButton.TabIndex = 1;
-            this.SearchButton.Text = "Search/Edit";
+            this.SearchButton.Text = "Edit Employees";
             this.SearchButton.UseVisualStyleBackColor = true;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
@@ -141,7 +141,7 @@ partial class MainForm
             this.WriteButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.WriteButton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WriteButton.Location = new System.Drawing.Point(333, 351);
-            this.WriteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WriteButton.Margin = new System.Windows.Forms.Padding(4);
             this.WriteButton.Name = "WriteButton";
             this.WriteButton.Size = new System.Drawing.Size(402, 73);
             this.WriteButton.TabIndex = 2;
@@ -157,10 +157,20 @@ partial class MainForm
             this.LandingPanel.Controls.Add(this.SearchButton);
             this.LandingPanel.Font = new System.Drawing.Font("Trebuchet MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LandingPanel.Location = new System.Drawing.Point(0, 0);
-            this.LandingPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LandingPanel.Margin = new System.Windows.Forms.Padding(4);
             this.LandingPanel.Name = "LandingPanel";
             this.LandingPanel.Size = new System.Drawing.Size(1065, 466);
             this.LandingPanel.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(272, 30);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(546, 97);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "HR Manager";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DisplayPanel
             // 
@@ -169,7 +179,7 @@ partial class MainForm
             this.DisplayPanel.Controls.Add(this.DisplayBackButton);
             this.DisplayPanel.Controls.Add(this.DisplayDataShow);
             this.DisplayPanel.Location = new System.Drawing.Point(0, 0);
-            this.DisplayPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DisplayPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DisplayPanel.Name = "DisplayPanel";
             this.DisplayPanel.Size = new System.Drawing.Size(1060, 466);
             this.DisplayPanel.TabIndex = 3;
@@ -239,7 +249,7 @@ partial class MainForm
             // DisplayDepartmentNoInput
             // 
             this.DisplayDepartmentNoInput.Location = new System.Drawing.Point(110, 72);
-            this.DisplayDepartmentNoInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DisplayDepartmentNoInput.Margin = new System.Windows.Forms.Padding(4);
             this.DisplayDepartmentNoInput.Name = "DisplayDepartmentNoInput";
             this.DisplayDepartmentNoInput.Size = new System.Drawing.Size(122, 27);
             this.DisplayDepartmentNoInput.TabIndex = 3;
@@ -277,7 +287,7 @@ partial class MainForm
             // 
             this.DisplayBackButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.DisplayBackButton.Location = new System.Drawing.Point(4, 428);
-            this.DisplayBackButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DisplayBackButton.Margin = new System.Windows.Forms.Padding(4);
             this.DisplayBackButton.Name = "DisplayBackButton";
             this.DisplayBackButton.Size = new System.Drawing.Size(112, 34);
             this.DisplayBackButton.TabIndex = 4;
@@ -359,7 +369,7 @@ partial class MainForm
             this.SearchPanel.Controls.Add(this.SearchLabelName);
             this.SearchPanel.Controls.Add(this.SearchText);
             this.SearchPanel.Location = new System.Drawing.Point(0, 0);
-            this.SearchPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchPanel.Margin = new System.Windows.Forms.Padding(4);
             this.SearchPanel.Name = "SearchPanel";
             this.SearchPanel.Size = new System.Drawing.Size(1065, 466);
             this.SearchPanel.TabIndex = 3;
@@ -368,7 +378,7 @@ partial class MainForm
             // SearchEditableHiringDate
             // 
             this.SearchEditableHiringDate.Location = new System.Drawing.Point(387, 216);
-            this.SearchEditableHiringDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchEditableHiringDate.Margin = new System.Windows.Forms.Padding(4);
             this.SearchEditableHiringDate.Name = "SearchEditableHiringDate";
             this.SearchEditableHiringDate.Size = new System.Drawing.Size(241, 27);
             this.SearchEditableHiringDate.TabIndex = 20;
@@ -379,7 +389,7 @@ partial class MainForm
             // 
             this.SearchBack.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchBack.Location = new System.Drawing.Point(452, 415);
-            this.SearchBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchBack.Margin = new System.Windows.Forms.Padding(4);
             this.SearchBack.Name = "SearchBack";
             this.SearchBack.Size = new System.Drawing.Size(112, 34);
             this.SearchBack.TabIndex = 19;
@@ -391,7 +401,7 @@ partial class MainForm
             // 
             this.SearchPanelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchPanelButton.Location = new System.Drawing.Point(590, 15);
-            this.SearchPanelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchPanelButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchPanelButton.Name = "SearchPanelButton";
             this.SearchPanelButton.Size = new System.Drawing.Size(112, 34);
             this.SearchPanelButton.TabIndex = 18;
@@ -414,7 +424,7 @@ partial class MainForm
             this.SearchDepartmentNoButton.Enabled = false;
             this.SearchDepartmentNoButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchDepartmentNoButton.Location = new System.Drawing.Point(654, 273);
-            this.SearchDepartmentNoButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchDepartmentNoButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchDepartmentNoButton.Name = "SearchDepartmentNoButton";
             this.SearchDepartmentNoButton.Size = new System.Drawing.Size(112, 34);
             this.SearchDepartmentNoButton.TabIndex = 16;
@@ -427,7 +437,7 @@ partial class MainForm
             this.SearchHiringDateButton.Enabled = false;
             this.SearchHiringDateButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchHiringDateButton.Location = new System.Drawing.Point(654, 216);
-            this.SearchHiringDateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchHiringDateButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchHiringDateButton.Name = "SearchHiringDateButton";
             this.SearchHiringDateButton.Size = new System.Drawing.Size(112, 34);
             this.SearchHiringDateButton.TabIndex = 15;
@@ -440,7 +450,7 @@ partial class MainForm
             this.SearchIDButton.Enabled = false;
             this.SearchIDButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchIDButton.Location = new System.Drawing.Point(654, 158);
-            this.SearchIDButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchIDButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchIDButton.Name = "SearchIDButton";
             this.SearchIDButton.Size = new System.Drawing.Size(112, 34);
             this.SearchIDButton.TabIndex = 14;
@@ -453,7 +463,7 @@ partial class MainForm
             this.SearchNameButton.Enabled = false;
             this.SearchNameButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.SearchNameButton.Location = new System.Drawing.Point(654, 94);
-            this.SearchNameButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchNameButton.Margin = new System.Windows.Forms.Padding(4);
             this.SearchNameButton.Name = "SearchNameButton";
             this.SearchNameButton.Size = new System.Drawing.Size(112, 34);
             this.SearchNameButton.TabIndex = 13;
@@ -464,7 +474,7 @@ partial class MainForm
             // SearchEditableDepartmentNo
             // 
             this.SearchEditableDepartmentNo.Location = new System.Drawing.Point(430, 273);
-            this.SearchEditableDepartmentNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchEditableDepartmentNo.Margin = new System.Windows.Forms.Padding(4);
             this.SearchEditableDepartmentNo.Name = "SearchEditableDepartmentNo";
             this.SearchEditableDepartmentNo.Size = new System.Drawing.Size(148, 27);
             this.SearchEditableDepartmentNo.TabIndex = 12;
@@ -474,7 +484,7 @@ partial class MainForm
             // SearchEditableID
             // 
             this.SearchEditableID.Location = new System.Drawing.Point(430, 158);
-            this.SearchEditableID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchEditableID.Margin = new System.Windows.Forms.Padding(4);
             this.SearchEditableID.Name = "SearchEditableID";
             this.SearchEditableID.Size = new System.Drawing.Size(148, 27);
             this.SearchEditableID.TabIndex = 10;
@@ -484,7 +494,7 @@ partial class MainForm
             // SearchEditableName
             // 
             this.SearchEditableName.Location = new System.Drawing.Point(430, 94);
-            this.SearchEditableName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchEditableName.Margin = new System.Windows.Forms.Padding(4);
             this.SearchEditableName.Name = "SearchEditableName";
             this.SearchEditableName.Size = new System.Drawing.Size(148, 27);
             this.SearchEditableName.TabIndex = 9;
@@ -574,7 +584,7 @@ partial class MainForm
             // SearchText
             // 
             this.SearchText.Location = new System.Drawing.Point(430, 18);
-            this.SearchText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SearchText.Margin = new System.Windows.Forms.Padding(4);
             this.SearchText.Name = "SearchText";
             this.SearchText.Size = new System.Drawing.Size(148, 27);
             this.SearchText.TabIndex = 0;
@@ -597,7 +607,7 @@ partial class MainForm
             this.WritingPanel.Controls.Add(this.Title);
             this.WritingPanel.Controls.Add(this.EmployeeName);
             this.WritingPanel.Location = new System.Drawing.Point(0, 0);
-            this.WritingPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WritingPanel.Margin = new System.Windows.Forms.Padding(4);
             this.WritingPanel.Name = "WritingPanel";
             this.WritingPanel.Size = new System.Drawing.Size(1065, 466);
             this.WritingPanel.TabIndex = 4;
@@ -744,7 +754,7 @@ partial class MainForm
             this.AddingDept.Controls.Add(this.label5);
             this.AddingDept.Controls.Add(this.label6);
             this.AddingDept.Location = new System.Drawing.Point(0, 0);
-            this.AddingDept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddingDept.Margin = new System.Windows.Forms.Padding(4);
             this.AddingDept.Name = "AddingDept";
             this.AddingDept.Size = new System.Drawing.Size(1065, 466);
             this.AddingDept.TabIndex = 13;
@@ -754,7 +764,7 @@ partial class MainForm
             // 
             this.backbt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backbt.Location = new System.Drawing.Point(18, 22);
-            this.backbt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backbt.Margin = new System.Windows.Forms.Padding(4);
             this.backbt.Name = "backbt";
             this.backbt.Size = new System.Drawing.Size(93, 39);
             this.backbt.TabIndex = 20;
@@ -776,7 +786,7 @@ partial class MainForm
             this.submitdept.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.submitdept.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitdept.Location = new System.Drawing.Point(471, 341);
-            this.submitdept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submitdept.Margin = new System.Windows.Forms.Padding(4);
             this.submitdept.Name = "submitdept";
             this.submitdept.Size = new System.Drawing.Size(112, 48);
             this.submitdept.TabIndex = 18;
@@ -787,7 +797,7 @@ partial class MainForm
             // deptid
             // 
             this.deptid.Location = new System.Drawing.Point(590, 237);
-            this.deptid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deptid.Margin = new System.Windows.Forms.Padding(4);
             this.deptid.Name = "deptid";
             this.deptid.Size = new System.Drawing.Size(346, 27);
             this.deptid.TabIndex = 17;
@@ -796,7 +806,7 @@ partial class MainForm
             // deptname
             // 
             this.deptname.Location = new System.Drawing.Point(590, 110);
-            this.deptname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deptname.Margin = new System.Windows.Forms.Padding(4);
             this.deptname.Name = "deptname";
             this.deptname.Size = new System.Drawing.Size(346, 27);
             this.deptname.TabIndex = 16;
@@ -832,7 +842,7 @@ partial class MainForm
             this.Adding.Controls.Add(this.addempbut);
             this.Adding.Controls.Add(this.adddepbut);
             this.Adding.Location = new System.Drawing.Point(0, 0);
-            this.Adding.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Adding.Margin = new System.Windows.Forms.Padding(4);
             this.Adding.Name = "Adding";
             this.Adding.Size = new System.Drawing.Size(1065, 466);
             this.Adding.TabIndex = 13;
@@ -842,7 +852,7 @@ partial class MainForm
             // 
             this.backbt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backbt2.Location = new System.Drawing.Point(18, 22);
-            this.backbt2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backbt2.Margin = new System.Windows.Forms.Padding(4);
             this.backbt2.Name = "backbt2";
             this.backbt2.Size = new System.Drawing.Size(93, 39);
             this.backbt2.TabIndex = 2;
@@ -854,7 +864,7 @@ partial class MainForm
             // 
             this.addempbut.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addempbut.Location = new System.Drawing.Point(378, 251);
-            this.addempbut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addempbut.Margin = new System.Windows.Forms.Padding(4);
             this.addempbut.Name = "addempbut";
             this.addempbut.Size = new System.Drawing.Size(308, 104);
             this.addempbut.TabIndex = 1;
@@ -866,23 +876,13 @@ partial class MainForm
             // 
             this.adddepbut.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adddepbut.Location = new System.Drawing.Point(378, 88);
-            this.adddepbut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adddepbut.Margin = new System.Windows.Forms.Padding(4);
             this.adddepbut.Name = "adddepbut";
             this.adddepbut.Size = new System.Drawing.Size(310, 99);
             this.adddepbut.TabIndex = 0;
             this.adddepbut.Text = "Add Department";
             this.adddepbut.UseVisualStyleBackColor = true;
             this.adddepbut.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Franklin Gothic Medium Cond", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(272, 30);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(546, 97);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "HR Manager";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -895,7 +895,7 @@ partial class MainForm
             this.Controls.Add(this.DisplayPanel);
             this.Controls.Add(this.AddingDept);
             this.Controls.Add(this.Adding);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "HRMS";
             this.LandingPanel.ResumeLayout(false);
