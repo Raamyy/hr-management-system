@@ -7,10 +7,10 @@ using System.IO;
 
 class FileOperation
 {
-    public enum FileErrorType { InvalidDepartmentID, InvalidEmployeeID, FieldOutOfRange, FieldNonExistant, NoError };
+    public enum FileErrorType { InvalidDepartmentID, InvalidEmployeeID, FieldOutOfRange, FieldNonExistant, NoError }; //Enum to send the type of error
     static string id, name, depId, hireDate, depName;
-    private static Dictionary<int, bool> IsUsedEmployeeID = new Dictionary<int, bool>();
-    private static Dictionary<int, bool> IsUsedDepartmentID = new Dictionary<int, bool>();
+    private static Dictionary<int, bool> IsUsedEmployeeID = new Dictionary<int, bool>(); // A map to know if employee ID used before or not
+    private static Dictionary<int, bool> IsUsedDepartmentID = new Dictionary<int, bool>(); // A map to know if department ID used before or not
     private static char[] chId;
     private static char[] chName;
     private static char[] chDepId;
@@ -67,7 +67,7 @@ class FileOperation
                 temp.DepId = int.Parse(DepId);
 
                 Employees.Add(temp);
-                IsUsedEmployeeID[temp.Id] = true; //reading the file updates the Employee IDs Dictionary
+                IsUsedEmployeeID[temp.Id] = true; // Updating Employees IDs map
             }
 
             sr.Close();
@@ -76,7 +76,7 @@ class FileOperation
 
         return new List<Employee>();
     }
-    public static List<Departement> Read_Dep()
+    public static List<Departement> Read_Dep() //returns list of all departments in the file.
     {
         if (File.Exists("Department.txt"))
         {
@@ -98,14 +98,14 @@ class FileOperation
 
                 temp.Name = Name;
                 Departments.Add(temp);
-                IsUsedDepartmentID[temp.Id] = true; //reading the file updates the Departments IDs Dictionary
+                IsUsedDepartmentID[temp.Id] = true; // Updating Departments IDs map
             }
             sr.Close();
             return Departments;
         }
         return null;
     }
-    public static List<Employee> GetByDepId(int DepId) //returns list of employees of dep depId
+    public static List<Employee> GetByDepId(int DepId) //returns list of employees from a specific department ID
     {
         List<Employee> AllEmployees = read();
         List<Employee> Emp = new List<Employee>();
@@ -116,7 +116,7 @@ class FileOperation
         }
         return Emp;
     }
-    public static List<Employee> GetByDepName(string DepName) //returns list of employees from a specific department DepName
+    public static List<Employee> GetByDepName(string DepName) //returns list of employees from a specific department Name
     {
         List<Employee> AllEmployees = read();
         List<Departement> AllDepartements = Read_Dep();
@@ -137,7 +137,7 @@ class FileOperation
         }
         return Emp;
     }
-    public static List<Employee> GetByEmpName(string EmpName) //returns list of employees with names similar to EmpName (or contain EmpName)
+    public static List<Employee> GetByEmpName(string EmpName) //returns list of employees with a specific name
     {
         List<Employee> AllEmployees = read();
         List<Employee> Emp = new List<Employee>();
@@ -151,7 +151,7 @@ class FileOperation
         }
         return Emp;
     }
-    public static List<Employee> GetByEmpId(int Id) //returns list of employees of dep depId
+    public static List<Employee> GetByEmpId(int Id) //returns list of employee of the given id
     {
         List<Employee> AllEmployees = read();
         List<Employee> Emp = new List<Employee>();
@@ -232,7 +232,7 @@ class FileOperation
             return WriteEmployee(emp, offset * 40, true);
         }
     }
-    public static void UpdateEmpDic(int PreviousId, int NewId)
+    public static void UpdateEmpDic(int PreviousId, int NewId) // Updating dictionary when A new ID is assigned to an employee
     {
         IsUsedEmployeeID[PreviousId] = false;
         IsUsedEmployeeID[NewId] = true;
@@ -251,7 +251,7 @@ class FileOperation
             depName.CopyTo(0, chDepName, 0, depName.Length);
             sw.Write(chDepId, 0, 5);
             sw.Write(chDepName, 0, 20);
-            IsUsedDepartmentID.Add(int.Parse(depId), true);  // 
+            IsUsedDepartmentID[int.Parse(depId)]= true;  //Updating Departments IDs map
             sw.Close();
             return true;
         }
